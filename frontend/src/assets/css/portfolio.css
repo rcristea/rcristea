@@ -1,0 +1,88 @@
+:root {
+  --theme-rich-blue: #001B29;
+  --theme-maximum-red: #D62828;
+  --theme-maximum-yellow: #FCBF49;
+  --theme-white: #FFFFFF;
+  --theme-gainsboro: #E0E0E0;
+  --theme-dark-text: #171717;
+}
+
+@font-face {
+  font-family: 'Righteous';
+  src: url('../font/Righteous/Righteous-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NunitoSans-Regular';
+  src: url('../font/Nunito_Sans/NunitoSans-Regular.ttf') format('truetype');
+}
+
+html {
+  font-family: 'NunitoSans-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif !important;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 15px 250px;
+  color: var(--theme-white);
+  transition: 0.1s;
+}
+
+.navbar-right {
+  display: flex;
+}
+
+.navbar .navbar-left .logo {
+  font-family: 'Righteous';
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.navbar .navbar-left .logo:hover {
+  color: var(--theme-maximum-yellow);
+}
+
+.navbar-center .navlink, .navbar-right .navbar-icon {
+  margin: 0 7px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.navbar-center .navlink:hover, .navbar-right .navbar-icon:hover {
+  border-bottom: 4px solid var(--theme-maximum-red);
+}
+
+@media screen and (max-width: 1024px) {
+  .navbar {
+    padding: 15px 50px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .navbar {
+    padding: 15px 25px;
+  }
+}
+
+@media screen and (max-width: 556px) {
+  .navbar-center {
+    display: none;
+  }
+}
+
+.test {
+  background-color: var(--theme-rich-blue);
+  height: 200vh;
+}
+
+.test2 {
+  background-color: var(--theme-white);
+  height: 100vh;
+}

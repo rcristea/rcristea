@@ -1,9 +1,17 @@
 import React from 'react'
 
+import Navbar from '../components/Navbar/Navbar'
+
 function Portfolio(props) {
   return (
     <>
-      Portfolio test
+      <Navbar />
+      <div className='test' id='top'>
+
+      </div>
+      <div className='test2' id='about'>
+        
+      </div>
     </>
   )
 }
