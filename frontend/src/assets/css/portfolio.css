@@ -26,13 +26,18 @@ html {
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   padding: 15px 250px;
   color: var(--theme-white);
+  background-color: var(--theme-rich-blue);
+  box-shadow: 0 4px 2px 2px var(--theme-rich-blue);
+  opacity: 0.9;
   transition: 0.1s;
+  z-index: 1;
 }
 
 .navbar-right {
@@ -49,14 +54,29 @@ html {
   color: var(--theme-maximum-yellow);
 }
 
+.navbar-right .navbar-icon a {
+  height: 16px;
+}
+
 .navbar-center .navlink, .navbar-right .navbar-icon {
   margin: 0 7px;
   cursor: pointer;
-  border-bottom: 2px solid transparent;
+  border-bottom: 4px solid transparent;
 }
 
 .navbar-center .navlink:hover, .navbar-right .navbar-icon:hover {
   border-bottom: 4px solid var(--theme-maximum-red);
+}
+
+.blur {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 27, 41 .5);
+  backdrop-filter: blur(10px);
+  overflow: scroll;
 }
 
 @media screen and (max-width: 1024px) {
@@ -78,8 +98,9 @@ html {
 }
 
 .test {
-  background-color: var(--theme-rich-blue);
+  background-image: url('../img/background.png');
   height: 200vh;
+  position: relative;
 }
 
 .test2 {
