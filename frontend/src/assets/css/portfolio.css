@@ -1,7 +1,7 @@
 :root {
   --theme-dark-primary: #181818;
   --theme-dark-secondary: #EA80FC;
-  --theme-dark-accent: #EA80FC;
+  --theme-dark-accent: #FFB2FF;
   --theme-dark-text: #FFFFFF;
   --theme-dark-text-secondary: #E0E0E0;
 }
@@ -14,6 +14,11 @@
 @font-face {
   font-family: 'NunitoSans-Regular';
   src: url('../font/Nunito_Sans/NunitoSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NunitoSans-ExtraBold';
+  src: url('../font/Nunito_Sans/NunitoSans-ExtraBold.ttf') format('truetype');
 }
 
 html {
@@ -78,15 +83,59 @@ html {
   overflow: scroll;
 }
 
+.hero {
+  padding:  60px 250px 0 250px;
+  height: 100vh;
+  background-color: var(--theme-dark-primary);
+  position: relative;
+  transition: 0.1s;
+}
+
+.hero .container {
+  position: absolute;
+  top: 40%;
+  left: 250px;
+  right: 250px;
+  transition: 0.1s;
+}
+
+.hero .container h1 {
+  color: var(--theme-dark-text);
+  font-family: 'NunitoSans-ExtraBold';
+  font-size: 3rem;
+}
+
+.color-secondary {
+  color: var(--theme-dark-secondary);
+}
+
 @media screen and (max-width: 1024px) {
   .navbar {
     padding: 15px 50px;
+  }
+
+  .hero {
+    padding:  60px 50px 0 50px;
+  }
+
+  .hero .container {
+    left: 50px;
+    right: 50px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .navbar {
     padding: 15px 25px;
+  }
+
+  .hero {
+    padding:  60px 25px 0 25px;
+  }
+
+  .hero .container {
+    left: 25px;
+    right: 25px;
   }
 }
 
