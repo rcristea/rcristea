@@ -54,13 +54,13 @@ class Navbar extends Component {
           </div>
           <div className='navbar-right'>
             <div className='navbar-icon'>
-              <a href='https://twitter.com/Teksiti' target='_blank' rel='noreferrer'><AiOutlineTwitter color='#ffffff'/></a>
+              <a href='https://twitter.com/Teksiti' target='_blank' rel='noreferrer'><AiOutlineTwitter size='22px' color='#ffffff'/></a>
             </div>
             <div className='navbar-icon'>
-              <a href='https://github.com/rcristea' target='_blank' rel='noreferrer'><AiFillGithub color='#ffffff'/></a>
+              <a href='https://github.com/rcristea' target='_blank' rel='noreferrer'><AiFillGithub size='22px' color='#ffffff'/></a>
             </div>
             <div className='navbar-icon'>
-              <a href='https://www.linkedin.com/in/rubencristea/' target='_blank' rel='noreferrer'><AiFillLinkedin color='#ffffff'/></a>
+              <a href='https://www.linkedin.com/in/rubencristea/' target='_blank' rel='noreferrer'><AiFillLinkedin size='22px' color='#ffffff'/></a>
             </div>
           </div>
         </nav>
