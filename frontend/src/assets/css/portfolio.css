@@ -37,8 +37,6 @@ html {
   right: 0;
   padding: 15px 250px;
   color: var(--theme-dark-text) !important;
-  background-color: var(--theme-dark-primary);
-  box-shadow: 0 4px 2px 2px var(--theme-dark-primary);
   transition: 0.1s;
   z-index: 1;
 }
@@ -105,6 +103,25 @@ html {
   font-size: 3rem;
 }
 
+.hero-button {
+  position: static;
+  padding: 7px 7px;
+  cursor: pointer;
+  color: var(--theme-dark-secondary);
+  border: 4px solid var(--theme-dark-secondary);
+  font-family: 'NunitoSans-ExtraBold';
+  transition: 0.3s;
+}
+
+.hero-button:hover {
+  background-color: var(--theme-dark-secondary);
+  color: var(--theme-dark-primary);
+}
+
+.spacer {
+  padding: 15px 0;
+}
+
 .color-secondary {
   color: var(--theme-dark-secondary);
 }
@@ -143,6 +160,10 @@ html {
   .navbar-center {
     display: none;
   }
+
+  .hero .container {
+    top: 15%;
+  }
 }
 
 .test {
@@ -152,6 +173,7 @@ html {
 }
 
 .test2 {
-  background-color: var(--theme-dark-text);
+  /* background-color: var(--theme-dark-text); */
+  background-image: url('../img/purple_city.gif');
   height: 100vh;
 }
