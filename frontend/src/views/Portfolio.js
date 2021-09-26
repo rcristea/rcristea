@@ -1,17 +1,13 @@
 import React from 'react'
+import Hero from '../components/Portfolio/Hero/Hero'
 
-import Navbar from '../components/Navbar/Navbar'
+import Navbar from '../components/Portfolio/Navbar/Navbar'
 
 function Portfolio(props) {
   return (
     <>
       <Navbar />
-      <div className='test' id='top'>
-        <div className='blur'></div>
-      </div>
-      <div className='test2' id='about'>
-
-      </div>
+      <Hero />
     </>
   )
 }

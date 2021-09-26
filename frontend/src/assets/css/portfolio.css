@@ -1,10 +1,9 @@
 :root {
-  --theme-rich-blue: #001B29;
-  --theme-maximum-red: #D62828;
-  --theme-maximum-yellow: #FCBF49;
-  --theme-white: #FFFFFF;
-  --theme-gainsboro: #E0E0E0;
-  --theme-dark-text: #171717;
+  --theme-dark-primary: #181818;
+  --theme-dark-secondary: #EA80FC;
+  --theme-dark-accent: #EA80FC;
+  --theme-dark-text: #FFFFFF;
+  --theme-dark-text-secondary: #E0E0E0;
 }
 
 @font-face {
@@ -32,10 +31,9 @@ html {
   left: 0;
   right: 0;
   padding: 15px 250px;
-  color: var(--theme-white);
-  background-color: var(--theme-rich-blue);
-  box-shadow: 0 4px 2px 2px var(--theme-rich-blue);
-  opacity: 0.9;
+  color: var(--theme-dark-text) !important;
+  background-color: var(--theme-dark-primary);
+  box-shadow: 0 4px 2px 2px var(--theme-dark-primary);
   transition: 0.1s;
   z-index: 1;
 }
@@ -48,10 +46,11 @@ html {
   font-family: 'Righteous';
   cursor: pointer;
   transition: 0.3s;
+  color: var(--theme-dark-text);
 }
 
 .navbar .navbar-left .logo:hover {
-  color: var(--theme-maximum-yellow);
+  color: var(--theme-dark-accent);
 }
 
 .navbar-right .navbar-icon a {
@@ -65,7 +64,7 @@ html {
 }
 
 .navbar-center .navlink:hover, .navbar-right .navbar-icon:hover {
-  border-bottom: 4px solid var(--theme-maximum-red);
+  border-bottom: 4px solid var(--theme-dark-secondary);
 }
 
 .blur {
@@ -98,12 +97,12 @@ html {
 }
 
 .test {
-  background-image: url('../img/background.png');
+  background-color: var(--theme-dark-primary);
   height: 200vh;
   position: relative;
 }
 
 .test2 {
-  background-color: var(--theme-white);
+  background-color: var(--theme-dark-text);
   height: 100vh;
 }
