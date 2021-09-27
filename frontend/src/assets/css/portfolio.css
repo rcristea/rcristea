@@ -219,6 +219,7 @@ html {
 .card-content {
   height: 200px;
   overflow: scroll;
+  transition: 0.1s all;
 }
 
 .card-content p {
@@ -230,6 +231,10 @@ html {
 .card-footer {
   text-align: center;
   margin-top: 50px;
+}
+
+.show-border {
+  border-bottom: 4px solid var(--theme-dark-secondary);
 }
 
 @media screen and (max-width: 1600px) {

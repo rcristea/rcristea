@@ -10,6 +10,16 @@ class Card extends Component {
       'title': this.props.title,
       'content': this.props.content,
       'footer': this.props.footer,
+      'isScrollBottom': false,
+    }
+  }
+
+  handleScroll = (e) => {
+    const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight
+    if (!bottom) {
+      this.setState({'isScrollBottom': false})
+    } else {
+      this.setState({'isScrollBottom': true})
     }
   }
 
@@ -25,7 +35,7 @@ class Card extends Component {
               <h3>{this.state.title}</h3>
             </div>
           </div>
-          <div className='card-content'>
+          <div className={`card-content ${this.state.isScrollBottom ? '' : 'show-border'}`} onScroll={this.handleScroll}>
             {this.state.content}
           </div>
           <div className='card-footer'>
