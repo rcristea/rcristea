@@ -40,6 +40,20 @@ class Projects extends Component {
             </a>
           </p>
       },
+      {
+        'img': <i className='devicon-react-original-wordmark colored' />,
+        'title': 'This Website!',
+        'content': 
+          <div>
+            <p>This portfolio was designed using ReactJS that also uses a Django backend. I used React in the past and fell in love with it so I have used it for pretty much any web app I worked on since trying it out. Django powers the backend. For this website it'll just send me an email whenever the contact form is submitted. I have future plans for this website so the database and backend were set up for that.</p>
+          </div>,
+        'footer': 
+          <p>
+            <a href='https://github.com/rcristea/imperia' target='_blank' rel='noreferrer'>
+              <AiFillGithub />
+            </a>
+          </p>
+      },
     ]
 
     this.state = {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import './Card.css'
 
 class Card extends Component {
@@ -10,16 +10,24 @@ class Card extends Component {
       'title': this.props.title,
       'content': this.props.content,
       'footer': this.props.footer,
-      'isScrollBottom': false,
+      'showBorder': true,
+    }
+
+    this.scrollBoxRef = createRef()
+  }
+
+  componentDidMount() {
+    if (this.scrollBoxRef.scrollHeight < this.scrollBoxRef.clientHeight) {
+      this.setState({'showBorder': true})
     }
   }
 
   handleScroll = (e) => {
     const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight
     if (!bottom) {
-      this.setState({'isScrollBottom': false})
+      this.setState({'showBorder': true})
     } else {
-      this.setState({'isScrollBottom': true})
+      this.setState({'showBorder': false})
     }
   }
 
@@ -35,7 +43,7 @@ class Card extends Component {
               <h3>{this.state.title}</h3>
             </div>
           </div>
-          <div className={`card-content ${this.state.isScrollBottom ? '' : 'show-border'}`} onScroll={this.handleScroll}>
+          <div className={`card-content ${this.state.showBorder ? 'show-border' : ''}`} onScroll={this.handleScroll} ref={this.scrollBoxRef}>
             {this.state.content}
           </div>
           <div className='card-footer'>
