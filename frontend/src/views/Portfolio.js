@@ -3,6 +3,7 @@ import About from '../components/Portfolio/About/About'
 import Hero from '../components/Portfolio/Hero/Hero'
 import Navbar from '../components/Portfolio/Navbar/Navbar'
 import Projects from '../components/Portfolio/Projects/Projects'
+import Resume from '../components/Portfolio/Resume/Resume'
 
 function Portfolio(props) {
   return (
@@ -11,6 +12,7 @@ function Portfolio(props) {
       <Hero />
       <About />
       <Projects />
+      <Resume />
     </>
   )
 }
