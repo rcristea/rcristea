@@ -35,7 +35,7 @@ class Projects extends Component {
           </div>,
         'footer': 
           <p>
-            <a href='https://github.com/rcristea/imperia' target='_blank' rel='noreferrer'>
+            <a href='https://github.com/rcristea/rcristea' target='_blank' rel='noreferrer'>
               <AiFillGithub />
             </a>
           </p>
@@ -50,6 +50,35 @@ class Projects extends Component {
         'footer': 
           <p>
             <a href='https://github.com/rcristea/imperia' target='_blank' rel='noreferrer'>
+              <AiFillGithub />
+            </a>
+          </p>
+      },
+      {
+        'img': <i className='devicon-csharp-plain colored' />,
+        'title': 'BasicLoginApplication',
+        'content': 
+          <div>
+            <p>My first application to test user input validation, persistent data, database usage, and data encryption.</p>
+            <p>I created this application after I was a teaching assistant in a business class that taught business majors how to write code. I didn't have any experience with C# or .NET before assisting in that class, so this was a fun way to test what I learned from that experience.</p>
+          </div>,
+        'footer': 
+          <p>
+            <a href='https://github.com/rcristea/BasicLoginApplication' target='_blank' rel='noreferrer'>
+              <AiFillGithub />
+            </a>
+          </p>
+      },
+      {
+        'img': <i className='devicon-python-plain-wordmark colored' />,
+        'title': 'Prelaunch Previews',
+        'content': 
+          <div>
+            <p>This was the very first project I made that I thought had real world value! It scraped a website for data about upcoming rocket launch events from various Launch Service Providers, and created google calendar events. I had this app running on a RaspberryPi that scheduled it to run once every day to update my Google Calendar with the events. This one was a lot of fun to make but unfortunately it no longer works since the website was updated and the regex I wrote no longer applies.</p>
+          </div>,
+        'footer': 
+          <p>
+            <a href='https://github.com/rcristea/prelaunch_previews_for_google_calendar' target='_blank' rel='noreferrer'>
               <AiFillGithub />
             </a>
           </p>
