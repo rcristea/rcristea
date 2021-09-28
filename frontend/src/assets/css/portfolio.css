@@ -244,6 +244,12 @@ html {
   }
 }
 
+@media screen and (max-width: 1200px) {
+  #projects {
+    padding: 150px 50px !important;
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .navbar {
     padding: 15px 50px;
@@ -260,6 +266,12 @@ html {
 
   .section-container {
     padding: 150px 50px; 
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .card-container {
+    grid-template-columns: 1fr;
   }
 }
 
