@@ -14,12 +14,12 @@ class Contact extends Component {
           <div className='section-header'>
             <h2>Contact</h2>
           </div>
-          <div className='section-content mw-50'>
+          <div className='section-content mw-50 mt-50'>
             <div className='contact-from-container'>
               <form className='contact-form' onSubmit={this.handleSubmit}>
                 <input type='text' placeholder='Your Name' name='name'/>
                 <input type='email' placeholder='Your Email' name='email' />
-                <textarea placeholder='Your message' rows='15' />
+                <textarea placeholder='Your Message' rows='15' />
                 <button type='submit' className='contact-form-submit'>Submit</button>
               </form>
             </div>

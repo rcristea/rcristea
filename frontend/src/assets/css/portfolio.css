@@ -297,6 +297,10 @@ html {
   color: var(--theme-dark-secondary);
 }
 
+.mt-50 {
+  margin-top: 50px !important;
+}
+
 @media screen and (max-width: 1600px) {
   .card-container {
     grid-template-columns: 1fr 1fr;
