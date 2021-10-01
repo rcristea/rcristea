@@ -10,7 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from os import environ
 from pathlib import Path
+
+# Set up environment variables
+env = environ.Env()
+environ.Env.read_env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -132,3 +137,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
 ]
+
+# Email settings
+MAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+MAIL_HOST = env('MAIL_HOST')
+MAIL_PORT = env('MAIL_PORT')
+MAIL_USE_TLS = env('MAIL_USE_TLS')
+MAIL_USERNAME = env('MAIL_USERNAME')
+MAIL_APP_PASSWORD = env('MAIL_APP_PASSWORD')
