@@ -39,7 +39,7 @@ class Contact extends Component {
     return errors
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async(e) => {
     e.preventDefault()
 
     const { name, email, message } = this.state
@@ -55,7 +55,7 @@ class Contact extends Component {
     formData.append('email', email)
     formData.append('message', message)
     
-    axios({
+    await axios({
       method: 'post',
       url: 'http://localhost:8000/api/portfolio/contact/',
       data: formData,
@@ -68,6 +68,12 @@ class Contact extends Component {
         errors: [],
       }))
       .catch(error => console.error(error))
+    
+      this.setState({
+        name: '',
+        email: '',
+        message: '',
+      })
   }
 
   closeAlert = (e) => {
@@ -91,9 +97,9 @@ class Contact extends Component {
                 {this.state.errors.map(error => (
                   <p key={error} className='contact-form-error'>&#183; {error}</p>
                 ))}
-                <input type='text' placeholder='Your Name' name='name' onChange={e => this.setState({name: e.target.value})} />
-                <input type='email' placeholder='Your Email' name='email' onChange={e => this.setState({email: e.target.value})} />
-                <textarea placeholder='Your Message' rows='15' onChange={e => this.setState({message: e.target.value})} />
+                <input type='text' placeholder='Your Name' name='name' value={this.state.name} onChange={e => this.setState({name: e.target.value})} />
+                <input type='email' placeholder='Your Email' name='email' value={this.state.email} onChange={e => this.setState({email: e.target.value})} />
+                <textarea placeholder='Your Message' rows='15' value={this.state.message} onChange={e => this.setState({message: e.target.value})} />
                 <button type='submit' className='contact-form-submit'>Submit</button>
               </form>
             </div>
