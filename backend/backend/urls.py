@@ -22,9 +22,9 @@ router = routers.DefaultRouter()
 
 # Routes for Todo test model
 router.register(r'todo', views.TodoView, 'todo')
-router.register(r'portfolio/contact', views.ContactView, 'contact')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/portfolio/contact/', views.ContactView.as_view(), name='contact')
 ]

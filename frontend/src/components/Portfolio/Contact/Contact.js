@@ -59,6 +59,9 @@ class Contact extends Component {
       method: 'post',
       url: 'http://localhost:8000/api/portfolio/contact/',
       data: formData,
+      headers: {
+        'Content-type': 'application/json',
+      }
     })
       .then(response => this.setState({
         emailSent: true,

@@ -139,9 +139,9 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 # Email settings
-MAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-MAIL_HOST = env('MAIL_HOST')
-MAIL_PORT = env('MAIL_PORT')
-MAIL_USE_TLS = env('MAIL_USE_TLS')
-MAIL_USERNAME = env('MAIL_USERNAME')
-MAIL_APP_PASSWORD = env('MAIL_APP_PASSWORD')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('MAIL_HOST')
+EMAIL_PORT = env('MAIL_PORT')
+EMAIL_USE_TLS = env('MAIL_USE_TLS')
+EMAIL_HOST_USER = env('MAIL_USERNAME')
+EMAIL_HOST_PASSWORD = env('MAIL_APP_PASSWORD')
