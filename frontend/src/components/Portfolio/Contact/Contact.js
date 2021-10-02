@@ -57,7 +57,7 @@ class Contact extends Component {
     
     axios({
       method: 'post',
-      url: 'http://localhost:8000/api/portfolio/contact',
+      url: 'http://localhost:8000/api/portfolio/contact/',
       data: formData,
     })
       .then(response => this.setState({

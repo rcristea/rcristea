@@ -22,6 +22,7 @@ router = routers.DefaultRouter()
 
 # Routes for Todo test model
 router.register(r'todo', views.TodoView, 'todo')
+router.register(r'portfolio/contact', views.ContactView, 'contact')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

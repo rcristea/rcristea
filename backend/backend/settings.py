@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from os import environ
+import environ
 from pathlib import Path
 
 # Set up environment variables
