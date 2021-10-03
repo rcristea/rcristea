@@ -26,4 +26,5 @@ router.register(r'todo', views.TodoView, 'todo')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/portfolio/contact/', views.ContactView.as_view(), name='contact')
 ]

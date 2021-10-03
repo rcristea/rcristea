@@ -1,5 +1,6 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './assets/css/portfolio.css'
+import './assets/css/reset.css'
 
 import Portfolio from './views/Portfolio'
 import TodoIndex from './components/Tests/TodoIndex/TodoIndex'

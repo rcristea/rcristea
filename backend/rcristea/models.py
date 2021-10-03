@@ -7,6 +7,14 @@ class Todo(models.Model):
   description = models.TextField()
   completed = models.BooleanField(default=False)
 
-  def _str_(self):
+  def __str__(self):
     return self.title
+
+class Contact(models.Model):
+  name = models.CharField(max_length=120)
+  email = models.EmailField()
+  message = models.TextField()
+
+  def __str__(self):
+      return self.email
 
