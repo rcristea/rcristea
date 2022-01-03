@@ -1,7 +1,7 @@
 <div align="center">
   
 ## About
-Hello, my name is Ruben. I am a software egineer for a <a href="https://carcareers.com" style="color:#EA80FC">startup</a> and work part time as a tech lead for a <a href="https://imperia.supply" style="color:#EA80FC">fasion company</a>. I love to work on all types of projects. If there is anything you want to work on with me let me know!
+Hello, my name is Ruben. I am a software engineer for a <a href="https://carcareers.com" style="color:#EA80FC">startup</a> and work part time as a tech lead for a <a href="https://imperia.supply" style="color:#EA80FC">fasion company</a>. I love to work on all types of projects. If there is anything you want to work on with me let me know!
 
 -------------------
 
