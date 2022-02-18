@@ -1,7 +1,7 @@
 <div align="center">
   
 ## About
-Hello, my name is Ruben. I am a software engineer for <a href="https://carcareers.com" style="color:#EA80FC">CARCAREERS.COM</a> and currently lead the development as CTO at <a href="https://imperia.supply" style="color:#EA80FC">IMPERIA</a>. Hobbyist video game && XR developer.
+Hello, my name is Ruben. I am a software engineer for <a href="https://carcareers.com" style="color:#EA80FC">CARCAREERS.COM</a> and currently lead the development as CTO at <a href="https://imperia.supply" style="color:#EA80FC">IMPERIA</a>. Hobbyist video game & XR developer.
 
 -------------------
 
