@@ -1,7 +1,7 @@
 <div align="center">
   
 ## About
-Hey! My name is Ruben. I am a software engineer for <a href="https://www.talitrix.com/" style="color:#EA80FC">Talitrix</a> and currently lead the development as CTO at <a href="https://imperia.supply" style="color:#EA80FC">IMPERIA</a>. I'm a hobbyist video game & XR developer and love designing virtual spaces. Wether that be a simple webpage or a Virtual Reality environment.
+Hey! My name is Ruben. I am a software engineer for <a href="https://www.talitrix.com/" style="color:#EA80FC">Talitrix</a> and currently lead the development as CTO at <a href="https://imperia.supply" style="color:#EA80FC">IMPERIA</a> and at <a href="https://carcareers.com" style="color:#EA80FC">CARCAREERS.COM</a>. I'm a hobbyist video game & XR developer and love designing virtual spaces. Whether that be a simple webpage or a Virtual Reality environment.
 
 -------------------
 
