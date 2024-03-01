@@ -1,7 +1,7 @@
 <div align="center">
   
 ## About
-Hey! My name is Ruben. I am a software engineer for <a href="https://www.weather.com/" style="color:#EA80FC">The Weather Company</a>. I'm a hobbyist video game & XR developer and love designing virtual spaces. Whether that be a simple webpage or a Virtual Reality environment.
+Hey! My name is Ruben. I'm a software engineer and hobbyist video game & XR developer.
 
 -------------------
 
