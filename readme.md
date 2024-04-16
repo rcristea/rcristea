@@ -3,6 +3,8 @@
 ## About
 Hey! My name is Ruben. I'm a software engineer and hobbyist video game & XR developer.
 
+<a href="https://rcristea.com">![Portfolio](https://img.shields.io/badge/Ruben_Cristea_Porfolio-13151a.svg?style=for-the-badge&logo=Astro&labelColor=c01dff&logoColor=ffffff)</a> 
+<a href="https://rcristea.com/dev-logs">![Blog](https://img.shields.io/badge/Blog-13151a.svg?style=for-the-badge)</a> 
 -------------------
 
 ## Contact
