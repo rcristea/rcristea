@@ -9,9 +9,7 @@ Hey! My name is Ruben. I'm a software engineer and hobbyist video game & XR deve
 
 ## Contact
 <a href="https://www.instagram.com/ruben_cristea/">![Instagram](https://img.shields.io/badge/Ruben_Cristea-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)</a> 
-<br>
 <a href="https://twitter.com/Teksiti">![Twitter](https://img.shields.io/badge/Ruben_Cristea-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)</a>
-<br>
 <a href="https://www.linkedin.com/in/rubencristea/">![LinkedIn](https://img.shields.io/badge/Ruben_Cristea-blue.svg?style=for-the-badge&logo=LinkedIn&logoColor=white)</a>
 
 -------------------
