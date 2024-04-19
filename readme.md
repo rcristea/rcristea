@@ -52,9 +52,7 @@ Hey! My name is Ruben. I'm a software engineer and hobbyist video game & XR deve
 ![Spotify](https://img.shields.io/badge/Spotify-1ED760?style=for-the-badge&logo=spotify&logoColor=white)
 
 -------------------
-  
-![rcristea github stats](https://github-readme-stats.vercel.app/api?username=rcristea&show_icons=true&theme=midnight-purple&count_private=true&include_all_commits=true)
 
 ![rcristea github streak](https://github-readme-streak-stats.herokuapp.com/?user=rcristea&theme=midnight-purple&include_all_commits=true&count_private=true)
 
-<div>
+</div>
