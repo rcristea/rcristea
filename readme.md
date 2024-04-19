@@ -1,20 +1,18 @@
 <div align="center">
   
-## About
-Hey! My name is Ruben. I'm a software engineer and hobbyist video game & XR developer.
 
-<a href="https://rcristea.com">![Portfolio](https://img.shields.io/badge/Ruben_Cristea_Porfolio-13151a.svg?style=for-the-badge&logo=Astro&labelColor=c01dff&logoColor=ffffff)</a> 
+### Hey! My name is Ruben.
+I'm a software engineer and hobbyist video game & XR developer.
+
+<a href="https://rcristea.com">![Portfolio](https://img.shields.io/badge/Porfolio-13151a.svg?style=for-the-badge&logo=Astro&labelColor=c01dff&logoColor=ffffff)</a> 
 <a href="https://rcristea.com/dev-logs">![Blog](https://img.shields.io/badge/Blog-13151a.svg?style=for-the-badge)</a> 
--------------------
 
-## Contact
 <a href="https://www.instagram.com/ruben_cristea/">![Instagram](https://img.shields.io/badge/Ruben_Cristea-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)</a> 
 <a href="https://twitter.com/Teksiti">![Twitter](https://img.shields.io/badge/Ruben_Cristea-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)</a>
 <a href="https://www.linkedin.com/in/rubencristea/">![LinkedIn](https://img.shields.io/badge/Ruben_Cristea-blue.svg?style=for-the-badge&logo=LinkedIn&logoColor=white)</a>
 
--------------------
 
-## Languages and Tools
+### Languages and Tools
 
 ![React](https://img.shields.io/badge/react-%23323330.svg?style=for-the-badge&logo=react)
 ![Django](https://img.shields.io/badge/django-%230C4B33.svg?style=for-the-badge&logo=django)
@@ -48,8 +46,6 @@ Hey! My name is Ruben. I'm a software engineer and hobbyist video game & XR deve
 ![RabbitMQ](https://img.shields.io/badge/Rabbitmq-FF6600?style=for-the-badge&logo=rabbitmq&logoColor=white)
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 ![Spotify](https://img.shields.io/badge/Spotify-1ED760?style=for-the-badge&logo=spotify&logoColor=white)
-
--------------------
 
 ![rcristea github streak](https://github-readme-streak-stats.herokuapp.com/?user=rcristea&theme=midnight-purple&include_all_commits=true&count_private=true)
 
