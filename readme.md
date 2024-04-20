@@ -26,9 +26,9 @@ I'm a software engineer and hobbyist video game & XR developer.
 ![Kotlin](https://img.shields.io/badge/kotlin-%23323330.svg?style=for-the-badge&logo=kotlin)
 ![Swift](https://img.shields.io/badge/swift-%23323330.svg?style=for-the-badge&logo=swift)
 
-![React](https://img.shields.io/badge/react_+_react_native-%23323330.svg?style=for-the-badge&logo=react)
+![React](https://img.shields.io/badge/react_&_react_native-%23323330.svg?style=for-the-badge&logo=react)
 ![Django](https://img.shields.io/badge/django-%230C4B33.svg?style=for-the-badge&logo=django)
-![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray)
+![Astro](https://img.shields.io/badge/astro-%23323330.svg?style=for-the-badge&logo=astro)
 ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 ![Laravel](https://img.shields.io/badge/Laravel-%23323330.svg?style=for-the-badge&logo=Laravel)
 ![Unity](https://img.shields.io/badge/unity-%23323330.svg?style=for-the-badge&logo=unity)
