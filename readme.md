@@ -5,7 +5,6 @@
 I'm a software engineer and hobbyist video game & XR developer.
 
 <a href="https://rcristea.com">![Portfolio](https://img.shields.io/badge/Porfolio-%230D1117.svg?style=for-the-badge&logo=Astro&labelColor=c01dff&logoColor=ffffff)</a> 
-<a href="https://rcristea.com/dev-logs">![Blog](https://img.shields.io/badge/Blog-%230D1117.svg?style=for-the-badge)</a> 
 
 <a href="https://www.instagram.com/ruben_cristea/">![Instagram](https://img.shields.io/badge/_-%230D1117.svg?style=for-the-badge&logo=Instagram&logoColor=E4405F)</a> 
 <a href="https://twitter.com/Teksiti">![Twitter](https://img.shields.io/badge/_-%230D1117.svg?style=for-the-badge&logo=Twitter&logoColor=1DA1F2)</a>
