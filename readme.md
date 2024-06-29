@@ -10,7 +10,6 @@ I'm a software engineer and hobbyist video game & XR developer.
 <a href="https://twitter.com/Teksiti">![Twitter](https://img.shields.io/badge/_-%230D1117.svg?style=for-the-badge&logo=Twitter&logoColor=1DA1F2)</a>
 <a href="https://www.linkedin.com/in/rubencristea/">![LinkedIn](https://img.shields.io/badge/_-%230D1117.svg?style=for-the-badge&logo=LinkedIn&logoColor=blue)</a>
 
-
 ### Languages and Tools
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23323330.svg?style=for-the-badge&logo=typescript)
