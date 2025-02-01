@@ -1,8 +1,10 @@
-<div align="center">
-  
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/gif/ruben.gif">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/gif/ruben-light.gif">
+  <img alt="Hey! My name is Ruben. I'm a software engineer and hobbyist video game & XR developer." src="./assets/gif/ruben.gif">
+</picture>
 
-### Hey! My name is Ruben.
-I'm a software engineer and hobbyist video game & XR developer.
+<div align="center">
 
 <a href="https://rcristea.com">![Portfolio](https://img.shields.io/badge/Portfolio-%230D1117.svg?style=for-the-badge&logo=Astro&labelColor=c01dff&logoColor=ffffff)</a> 
 
