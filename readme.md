@@ -40,4 +40,11 @@
 | ![React](./assets/icon/react.svg)<br>**React** | ![Redux](./assets/icon/redux.svg)<br>**React Redux** | ![Node](./assets/icon/node.svg)<br>**NodeJS** | ![NX](./assets/icon/nx.svg)<br>**nrwl NX** | ![NestJS](./assets/icon/nestjs.svg)<br>**NestJS** |
 |:---:|:---:|:---:|:---:|:---:|
 | ![Astro](./assets/icon/astro.svg)<br>**Astro** | ![Django](./assets/icon/django.svg)<br>**Django** | ![Laravel](./assets/icon/laravel.svg)<br>**Laravel** | ![Unity](./assets/icon/unity.svg)<br>**Unity** | ![Unreal Engine](./assets/icon/unrealengine.svg)<br>**Unreal Engine** |
+
+### My Favorite LLM Tools
+
+| ![Cursor](./assets/icon/cursor.avif)<br>**Cursor** | ![Gemini](./assets/icon/gemini.svg)<br>**Gemini** | ![Claude](./assets/icon/claude.svg)<br>**Claude** | ![Copilot](./assets/icon/copilot.svg)<br>**Copilot**   |
+|:---:|:---:|:---:|:---:|
+
+<br>
 </div>
