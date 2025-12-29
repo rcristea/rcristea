@@ -42,62 +42,65 @@
 
 ### Best AI Tools
 
-<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-  <div style="text-align: center;">
-    <img src="./assets/icon/copilot.svg" alt="Copilot" width="48" height="48"><br>
-    <strong>Copilot</strong>
-  </div>
-  <div style="text-align: center;">
-    <img src="./assets/icon/claude.svg" alt="Claude" width="48" height="48"><br>
-    <strong>Claude</strong>
-  </div>
-</div>
+<p align="center">
+  <img src="./assets/icon/copilot.svg" alt="Copilot" width="48" height="48"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./assets/icon/claude.svg" alt="Claude" width="48" height="48"/>
+</p>
+<p align="center">
+  <strong>Copilot</strong>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <strong>Claude</strong>
+</p>
 
 <br>
 
 ### Frameworks & Libraries
 
-<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-  <div style="text-align: center;">
-    <img src="./assets/icon/react.svg" alt="React" width="48" height="48"><br>
-    <strong>React</strong>
-  </div>
-  <div style="text-align: center;">
-    <img src="./assets/icon/redux.svg" alt="Redux" width="48" height="48"><br>
-    <strong>Redux</strong>
-  </div>
-  <div style="text-align: center;">
-    <img src="./assets/icon/node.svg" alt="Node" width="48" height="48"><br>
-    <strong>NodeJS</strong>
-  </div>
-  <div style="text-align: center;">
-    <img src="./assets/icon/nx.svg" alt="NX" width="48" height="48"><br>
-    <strong>NX</strong>
-  </div>
-  <div style="text-align: center;">
-    <img src="./assets/icon/nestjs.svg" alt="NestJS" width="48" height="48"><br>
-    <strong>NestJS</strong>
-  </div>
-  <div style="text-align: center;">
-    <img src="./assets/icon/astro.svg" alt="Astro" width="48" height="48"><br>
-    <strong>Astro</strong>
-  </div>
-  <div style="text-align: center;">
-    <img src="./assets/icon/django.svg" alt="Django" width="48" height="48"><br>
-    <strong>Django</strong>
-  </div>
-  <div style="text-align: center;">
-    <img src="./assets/icon/laravel.svg" alt="Laravel" width="48" height="48"><br>
-    <strong>Laravel</strong>
-  </div>
-  <div style="text-align: center;">
-    <img src="./assets/icon/unity.svg" alt="Unity" width="48" height="48"><br>
-    <strong>Unity</strong>
-  </div>
-  <div style="text-align: center;">
-    <img src="./assets/icon/unrealengine.svg" alt="Unreal Engine" width="48" height="48"><br>
-    <strong>Unreal Engine</strong>
-  </div>
-</div>
+<p align="center">
+  <img src="./assets/icon/react.svg" alt="React" width="48" height="48"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./assets/icon/redux.svg" alt="Redux" width="48" height="48"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./assets/icon/node.svg" alt="Node" width="48" height="48"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./assets/icon/nx.svg" alt="NX" width="48" height="48"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./assets/icon/nestjs.svg" alt="NestJS" width="48" height="48"/>
+</p>
+<p align="center">
+  <strong>React</strong>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <strong>Redux</strong>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <strong>NodeJS</strong>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <strong>NX</strong>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <strong>NestJS</strong>
+</p>
+
+<p align="center">
+  <img src="./assets/icon/astro.svg" alt="Astro" width="48" height="48"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./assets/icon/django.svg" alt="Django" width="48" height="48"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./assets/icon/laravel.svg" alt="Laravel" width="48" height="48"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./assets/icon/unity.svg" alt="Unity" width="48" height="48"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./assets/icon/unrealengine.svg" alt="Unreal Engine" width="48" height="48"/>
+</p>
+<p align="center">
+  <strong>Astro</strong>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <strong>Django</strong>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <strong>Laravel</strong>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <strong>Unity</strong>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <strong>Unreal Engine</strong>
+</p>
 
 <br>
