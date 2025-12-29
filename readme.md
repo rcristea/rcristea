@@ -22,29 +22,82 @@
 
 
 
-### Programming Languages
+### Favorite Languages
 
 ![Typescript](./assets/icon/typescript.svg)
-![JavaScript](./assets/icon/javascript.svg)
+![Go](./assets/icon/go.svg)
 ![C++](./assets/icon/cpp.svg)
 ![Python](./assets/icon/python.svg)
+
+### If I have to
+![JavaScript](./assets/icon/javascript.svg)
 ![C#](./assets/icon/csharp.svg)
 ![Rust](./assets/icon/rust.svg)
-![Go](./assets/icon/go.svg)
-![HTML5](./assets/icon/html5.svg)
 ![Kotlin](./assets/icon/kotlin.svg)
 ![Swift](./assets/icon/swift.svg)
 ![php](./assets/icon/php.svg)
-
-### Frameworks & Libraries
-| ![React](./assets/icon/react.svg)<br>**React** | ![Redux](./assets/icon/redux.svg)<br>**React Redux** | ![Node](./assets/icon/node.svg)<br>**NodeJS** | ![NX](./assets/icon/nx.svg)<br>**nrwl NX** | ![NestJS](./assets/icon/nestjs.svg)<br>**NestJS** |
-|:---:|:---:|:---:|:---:|:---:|
-| ![Astro](./assets/icon/astro.svg)<br>**Astro** | ![Django](./assets/icon/django.svg)<br>**Django** | ![Laravel](./assets/icon/laravel.svg)<br>**Laravel** | ![Unity](./assets/icon/unity.svg)<br>**Unity** | ![Unreal Engine](./assets/icon/unrealengine.svg)<br>**Unreal Engine** |
-
-### My Favorite LLM Tools
-
-| ![Cursor](./assets/icon/cursor.avif)<br>**Cursor** | ![Gemini](./assets/icon/gemini.svg)<br>**Gemini** | ![Claude](./assets/icon/claude.svg)<br>**Claude** | ![Copilot](./assets/icon/copilot.svg)<br>**Copilot**   |
-|:---:|:---:|:---:|:---:|
+![Java](./assets/icon/java.svg)
 
 <br>
+
+### Best AI Tools
+
+<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+  <div style="text-align: center;">
+    <img src="./assets/icon/copilot.svg" alt="Copilot" width="48" height="48"><br>
+    <strong>Copilot</strong>
+  </div>
+  <div style="text-align: center;">
+    <img src="./assets/icon/claude.svg" alt="Claude" width="48" height="48"><br>
+    <strong>Claude</strong>
+  </div>
 </div>
+
+<br>
+
+### Frameworks & Libraries
+
+<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+  <div style="text-align: center;">
+    <img src="./assets/icon/react.svg" alt="React" width="48" height="48"><br>
+    <strong>React</strong>
+  </div>
+  <div style="text-align: center;">
+    <img src="./assets/icon/redux.svg" alt="Redux" width="48" height="48"><br>
+    <strong>Redux</strong>
+  </div>
+  <div style="text-align: center;">
+    <img src="./assets/icon/node.svg" alt="Node" width="48" height="48"><br>
+    <strong>NodeJS</strong>
+  </div>
+  <div style="text-align: center;">
+    <img src="./assets/icon/nx.svg" alt="NX" width="48" height="48"><br>
+    <strong>NX</strong>
+  </div>
+  <div style="text-align: center;">
+    <img src="./assets/icon/nestjs.svg" alt="NestJS" width="48" height="48"><br>
+    <strong>NestJS</strong>
+  </div>
+  <div style="text-align: center;">
+    <img src="./assets/icon/astro.svg" alt="Astro" width="48" height="48"><br>
+    <strong>Astro</strong>
+  </div>
+  <div style="text-align: center;">
+    <img src="./assets/icon/django.svg" alt="Django" width="48" height="48"><br>
+    <strong>Django</strong>
+  </div>
+  <div style="text-align: center;">
+    <img src="./assets/icon/laravel.svg" alt="Laravel" width="48" height="48"><br>
+    <strong>Laravel</strong>
+  </div>
+  <div style="text-align: center;">
+    <img src="./assets/icon/unity.svg" alt="Unity" width="48" height="48"><br>
+    <strong>Unity</strong>
+  </div>
+  <div style="text-align: center;">
+    <img src="./assets/icon/unrealengine.svg" alt="Unreal Engine" width="48" height="48"><br>
+    <strong>Unreal Engine</strong>
+  </div>
+</div>
+
+<br>
