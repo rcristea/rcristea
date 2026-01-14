@@ -29,7 +29,7 @@
 ![C++](./assets/icon/cpp.svg)
 ![Python](./assets/icon/python.svg)
 
-### If I have to
+### Others I Like
 ![JavaScript](./assets/icon/javascript.svg)
 ![C#](./assets/icon/csharp.svg)
 ![Rust](./assets/icon/rust.svg)
