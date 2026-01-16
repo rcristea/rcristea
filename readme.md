@@ -6,7 +6,7 @@
 
 <br><br>
 
-### Portfolio
+### Portfolio (Click Me!)
 
 <a href="https://rcristea.com" style="width: 100px; height: 100px;">![Astro Icon](./assets/icon/astro.svg)</a>
 
