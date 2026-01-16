@@ -1,0 +1,55 @@
+---
+/**
+ * ITTutorGGC - IT Tutor at Georgia Gwinnett College
+ */
+
+export interface Props {
+  school?: string;
+  location?: string;
+  responsibilities?: string[];
+  skills?: string[];
+}
+
+const {
+  school = 'Georgia Gwinnett College',
+  location = 'Greater Atlanta Area',
+  responsibilities = [
+    'Tutored at-risk students in programming courses based on Java, C#, and Python',
+    'Prepared programming assignments for students to practice key skills, from understanding classes and objects to using data structures to solve real-life problems',
+    'Worked with students on proper style and formatting of code',
+    'Completed training on working with diverse personalities and cultural backgrounds, including "politeness theory"',
+  ],
+  skills = ['Java', 'C#', 'Python', 'Mentoring', 'Rapid Learning'],
+} = Astro.props;
+---
+
+<div class="event-education">
+  <div class="event-education-header">
+    <div class="event-education-school">{school}</div>
+    {location && <div class="event-education-location">📍 {location}</div>}
+  </div>
+
+  <section class="event-education-section">
+    <h4>Responsibilities</h4>
+    <ul class="event-education-list">
+      {responsibilities.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  </section>
+
+  {skills.length > 0 && (
+    <section class="event-education-section">
+      <h4>Skills</h4>
+      <div class="event-tags">
+        {skills.map((skill) => (
+          <span class="event-tag">{skill}</span>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <div class="event-media-slot" data-slot="media">
+    <slot name="media" />
+  </div>
+</div>

@@ -1,0 +1,74 @@
+---
+/**
+ * FrontendTechLeadNCRVoyix - SWE II / Frontend Tech Lead at NCR Voyix
+ */
+
+export interface Props {
+  company?: string;
+  location?: string;
+  responsibilities?: string[];
+  achievements?: string[];
+  technologies?: string[];
+}
+
+const {
+  company = 'NCR Voyix',
+  location = 'Atlanta, GA',
+  responsibilities = [
+    'Led team of engineers for a cutting edge AI-driven, point-of-sale platform targeting SMB to enterprise',
+    'Architected and implemented the frontend architecture for a configuration-driven renderer that dynamically composes UI at runtime',
+    'Enabled highly configurable deployments and reuse across new and legacy applications',
+    'Recruited and onboarded a high performing engineering team',
+    'Coordinated technical direction with backend, product, and UX teams',
+    'Ran engineering planning and story distribution, and demoed progress to C-suite stakeholders',
+    'Built a proof-of-concept drag-and-drop editor to validate the builder UX before full implementation',
+    'Defined the layout/rendering engine that maps configuration to runtime components',
+  ],
+  achievements = [
+    'Awarded an equity grant by the CTO in recognition of leadership, impact, and potential',
+  ],
+  technologies = ['React', 'TypeScript', 'AI/ML', 'Configuration-Driven UI', 'Module Federation'],
+} = Astro.props;
+---
+
+<div class="event-work">
+  <div class="event-work-header">
+    <div class="event-work-company">{company}</div>
+    {location && <div class="event-work-location">📍 {location}</div>}
+  </div>
+
+  <section class="event-work-section">
+    <h4>Leadership & Responsibilities</h4>
+    <ul class="event-work-list">
+      {responsibilities.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  </section>
+
+  {achievements.length > 0 && (
+    <section class="event-work-section">
+      <h4>Recognition</h4>
+      <ul class="event-work-list event-work-achievements">
+        {achievements.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {technologies.length > 0 && (
+    <section class="event-work-section">
+      <h4>Technologies</h4>
+      <div class="event-tags">
+        {technologies.map((tech) => (
+          <span class="event-tag">{tech}</span>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <div class="event-media-slot" data-slot="media">
+    <slot name="media" />
+  </div>
+</div>

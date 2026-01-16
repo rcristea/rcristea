@@ -1,0 +1,324 @@
+---
+/**
+ * DotGridV2 - Magnifying Glass Dot Grid
+ *
+ * A canvas-based animated dot grid with a smooth "magnifying glass" hover effect.
+ * Dots scale up and push away from the cursor position.
+ *
+ * Theme Integration:
+ * - Uses CSS variables: --background-light (base), --background-main (active)
+ * - Automatically adapts to dark/light theme
+ *
+ * Mobile:
+ * - Effect is disabled on mobile devices (renders static grid)
+ */
+---
+
+<section class="dot-grid">
+  <div class="dot-grid__wrap">
+    <canvas class="dot-grid__canvas"></canvas>
+  </div>
+</section>
+
+<style>
+  .dot-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+  }
+
+  .dot-grid__wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .dot-grid__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  import { getCssVar, parseCssColor, type RGB } from '../utils/color';
+  import { isMobileDevice } from '../utils/device';
+
+  const CONFIG = {
+    dotSize: 3,
+    gap: 25,
+    proximity: 250,
+    maxScale: 5,
+    pushStrength: 20,
+    smoothingFactor: 15,
+    colorGradient: 0,
+  } as const;
+
+  interface Dot {
+    cx: number;
+    cy: number;
+    currentScale: number;
+    currentOffsetX: number;
+    currentOffsetY: number;
+  }
+
+  function initDotGrid(): void {
+    const wrapper = document.querySelector(
+      '.dot-grid__wrap'
+    ) as HTMLDivElement | null;
+    const canvas = document.querySelector(
+      '.dot-grid__canvas'
+    ) as HTMLCanvasElement | null;
+
+    if (!wrapper || !canvas) return;
+
+    // Skip animation on mobile - render static grid
+    const isMobile = isMobileDevice();
+
+    // State
+    let dots: Dot[] = [];
+    let mouseX = -1000;
+    let mouseY = -1000;
+    let rafId: number | null = null;
+    let lastFrameTime = performance.now();
+
+    // Pre-compute circle path for performance
+    const circlePath = new Path2D();
+    circlePath.arc(0, 0, CONFIG.dotSize / 2, 0, Math.PI * 2);
+
+    // Squared proximity for faster distance checks
+    const proximitySq = CONFIG.proximity * CONFIG.proximity;
+
+    /**
+     * Reads theme colors from CSS variables
+     */
+    function getThemeColors(): { base: RGB; active: RGB; baseHex: string } {
+      const baseHex = getCssVar('--background-light');
+      const activeHex = getCssVar('--background-main');
+      return {
+        base: parseCssColor(baseHex),
+        active: parseCssColor(activeHex),
+        baseHex,
+      };
+    }
+
+    /**
+     * Builds the dot grid based on container dimensions
+     */
+    function buildGrid(): void {
+      if (!wrapper || !canvas) return;
+
+      const { width, height } = wrapper.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+
+      // Set canvas size
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+
+      const ctx = canvas.getContext('2d');
+      if (ctx) ctx.scale(dpr, dpr);
+
+      // Calculate grid dimensions
+      const cell = CONFIG.dotSize + CONFIG.gap;
+      const cols = Math.floor((width + CONFIG.gap) / cell);
+      const rows = Math.floor((height + CONFIG.gap) / cell);
+
+      // Center the grid
+      const gridW = cell * cols - CONFIG.gap;
+      const gridH = cell * rows - CONFIG.gap;
+      const startX = (width - gridW) / 2 + CONFIG.dotSize / 2;
+      const startY = (height - gridH) / 2 + CONFIG.dotSize / 2;
+
+      // Create dots
+      dots = [];
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          dots.push({
+            cx: startX + col * cell,
+            cy: startY + row * cell,
+            currentScale: 1,
+            currentOffsetX: 0,
+            currentOffsetY: 0,
+          });
+        }
+      }
+    }
+
+    /**
+     * Renders a static grid (for mobile)
+     */
+    function renderStaticGrid(): void {
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const { baseHex } = getThemeColors();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (const dot of dots) {
+        ctx.save();
+        ctx.translate(dot.cx, dot.cy);
+        ctx.fillStyle = baseHex;
+        ctx.fill(circlePath);
+        ctx.restore();
+      }
+    }
+
+    /**
+     * Main animation loop
+     */
+    function animate(): void {
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const now = performance.now();
+      const dt = Math.min(0.033, (now - lastFrameTime) / 1000); // Cap at ~30fps worth of delta
+      lastFrameTime = now;
+
+      // Get current theme colors (supports dynamic theme changes)
+      const { base, active, baseHex } = getThemeColors();
+
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Time-based smoothing factor
+      const smoothAlpha = 1 - Math.exp(-CONFIG.smoothingFactor * dt);
+
+      for (const dot of dots) {
+        const dx = dot.cx - mouseX;
+        const dy = dot.cy - mouseY;
+        const distSq = dx * dx + dy * dy;
+
+        let targetScale = 1;
+        let targetOffsetX = 0;
+        let targetOffsetY = 0;
+        let r = base.r;
+        let g = base.g;
+        let b = base.b;
+
+        if (distSq <= proximitySq) {
+          const dist = Math.sqrt(distSq);
+          // Normalized influence (1 at center, 0 at edge)
+          const t = 1 - dist / CONFIG.proximity;
+          // Ease the falloff for smoother transition
+          const easedT = t * t * (3 - 2 * t); // Smoothstep
+
+          // Target values based on proximity
+          targetScale = 1 + easedT * (CONFIG.maxScale - 1);
+
+          // Push away from cursor
+          const angle = Math.atan2(dy, dx);
+          const pushAmount = easedT * CONFIG.pushStrength;
+          targetOffsetX = Math.cos(angle) * pushAmount;
+          targetOffsetY = Math.sin(angle) * pushAmount;
+
+          // Interpolate color with gradient intensity
+          const colorT = easedT * CONFIG.colorGradient;
+          r = Math.round(base.r + (active.r - base.r) * colorT);
+          g = Math.round(base.g + (active.g - base.g) * colorT);
+          b = Math.round(base.b + (active.b - base.b) * colorT);
+        }
+
+        // Smooth interpolation toward target values
+        dot.currentScale += (targetScale - dot.currentScale) * smoothAlpha;
+        dot.currentOffsetX +=
+          (targetOffsetX - dot.currentOffsetX) * smoothAlpha;
+        dot.currentOffsetY +=
+          (targetOffsetY - dot.currentOffsetY) * smoothAlpha;
+
+        // Determine fill color
+        // If within proximity, use interpolated color; otherwise use base
+        const fillColor =
+          distSq <= proximitySq ? `rgb(${r},${g},${b})` : baseHex;
+
+        // Draw dot
+        ctx.save();
+        ctx.translate(dot.cx + dot.currentOffsetX, dot.cy + dot.currentOffsetY);
+        ctx.scale(dot.currentScale, dot.currentScale);
+        ctx.fillStyle = fillColor;
+        ctx.fill(circlePath);
+        ctx.restore();
+      }
+
+      rafId = requestAnimationFrame(animate);
+    }
+
+    /**
+     * Mouse move handler
+     */
+    function onMouseMove(e: MouseEvent): void {
+      if (!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    }
+
+    /**
+     * Mouse leave handler - move mouse position off-screen
+     */
+    function onMouseLeave(): void {
+      mouseX = -1000;
+      mouseY = -1000;
+    }
+
+    /**
+     * Resize handler with debounce
+     */
+    let resizeTimeout: ReturnType<typeof setTimeout> | null = null;
+    function onResize(): void {
+      if (resizeTimeout) clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        buildGrid();
+        if (isMobile) renderStaticGrid();
+      }, 100);
+    }
+
+    // =============================================================================
+    // Initialize
+    // =============================================================================
+
+    buildGrid();
+
+    if (isMobile) {
+      // Mobile: static render only
+      renderStaticGrid();
+
+      // Re-render on resize
+      window.addEventListener('resize', onResize);
+    } else {
+      // Desktop: full animation
+      window.addEventListener('mousemove', onMouseMove, { passive: true });
+      wrapper.addEventListener('mouseleave', onMouseLeave);
+      window.addEventListener('resize', onResize);
+
+      // Start animation loop
+      animate();
+    }
+
+    // Cleanup on page navigation (for Astro view transitions)
+    document.addEventListener('astro:before-swap', () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener('mousemove', onMouseMove);
+      wrapper.removeEventListener('mouseleave', onMouseLeave);
+      window.removeEventListener('resize', onResize);
+    });
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDotGrid);
+  } else {
+    initDotGrid();
+  }
+
+  // Re-initialize on Astro page navigation
+  document.addEventListener('astro:page-load', initDotGrid);
+</script>

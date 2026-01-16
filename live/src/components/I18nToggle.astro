@@ -1,0 +1,258 @@
+---
+/**
+ * I18nToggle - Language Selector Toggle
+ *
+ * A button that shows a horizontal sliding list of language options.
+ * - Globe icon as trigger
+ * - Horizontal slide-in list with language options
+ * - Closes on selection
+ *
+ * @example
+ * <I18nToggle />
+ */
+
+import globeIcon from '../assets/icon/globe.svg?raw';
+import { LOCALES } from '../i18n';
+---
+
+<div class="i18n-toggle" data-i18n-toggle>
+  <!-- Globe trigger button -->
+  <button
+    class="i18n-toggle__trigger"
+    aria-label="Change language"
+    aria-expanded="false"
+    data-i18n-trigger
+  >
+    <Fragment set:html={globeIcon} />
+  </button>
+
+  <!-- Language options list -->
+  <div class="i18n-toggle__list" data-i18n-list>
+    {
+      LOCALES.map((locale) => (
+        <button
+          class="i18n-toggle__option"
+          data-locale={locale.code}
+          aria-label={`Switch to ${locale.name}`}
+        >
+          {locale.nativeName}
+        </button>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .i18n-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .i18n-toggle__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    color: var(--text-main);
+    transition:
+      color 0.3s cubic-bezier(0, 0, 0.2, 1),
+      transform 0.2s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .i18n-toggle__trigger:hover {
+    color: var(--primary-main);
+    transform: scale(1.1);
+  }
+
+  .i18n-toggle__trigger:active {
+    transform: scale(0.95);
+  }
+
+  .i18n-toggle__trigger:focus-visible {
+    outline: 2px solid var(--primary-main);
+    outline-offset: 2px;
+  }
+
+  /* Language options list */
+  .i18n-toggle__list {
+    position: absolute;
+    right: calc(100% + 12px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(10px);
+    transition:
+      opacity 0.3s cubic-bezier(0, 0, 0.2, 1),
+      transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  /* Open state */
+  .i18n-toggle.open .i18n-toggle__list {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+
+  /* Language option button */
+  .i18n-toggle__option {
+    white-space: nowrap;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-main);
+    background-color: var(--background-dark);
+    padding: 4px 10px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    outline: none;
+    transition:
+      color 0.2s cubic-bezier(0, 0, 0.2, 1),
+      background-color 0.2s cubic-bezier(0, 0, 0.2, 1),
+      transform 0.2s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .i18n-toggle__option:hover {
+    color: var(--primary-main);
+    transform: scale(1.05);
+  }
+
+  .i18n-toggle__option:active {
+    transform: scale(0.95);
+  }
+
+  .i18n-toggle__option:focus-visible {
+    outline: 2px solid var(--primary-main);
+    outline-offset: 2px;
+  }
+
+  /* Active locale indicator */
+  .i18n-toggle__option.active {
+    background-color: var(--primary-main);
+    color: var(--primary-contrast);
+  }
+
+  /* Position adjustments for left-side page indicator */
+  :global([data-position='left']) .i18n-toggle__list {
+    right: auto;
+    left: calc(100% + 12px);
+    transform: translateX(-10px);
+  }
+
+  :global([data-position='left']) .i18n-toggle.open .i18n-toggle__list {
+    transform: translateX(0);
+  }
+</style>
+
+<script>
+  function initI18nToggle(): void {
+    const toggles = document.querySelectorAll('[data-i18n-toggle]');
+
+    toggles.forEach((toggle) => {
+      const trigger = toggle.querySelector('[data-i18n-trigger]');
+      const options = toggle.querySelectorAll('[data-locale]');
+
+      if (!trigger) return;
+
+      function updateActiveState(): void {
+        const currentLocale = window.__i18n?.getLocale() || 'en';
+        options.forEach((option) => {
+          const isActive =
+            (option as HTMLElement).dataset['locale'] === currentLocale;
+          option.classList.toggle('active', isActive);
+        });
+      }
+
+      function toggleList(): void {
+        const isOpen = toggle.classList.contains('open');
+        toggle.classList.toggle('open', !isOpen);
+
+        if (trigger) {
+          trigger.setAttribute('aria-expanded', String(!isOpen));
+        }
+      }
+
+      function closeList(): void {
+        toggle.classList.remove('open');
+
+        if (trigger) {
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      function selectLocale(locale: string): void {
+        window.__i18n?.setLocale(locale);
+        updateActiveState();
+        closeList();
+      }
+
+      // Event listeners
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleList();
+      });
+
+      options.forEach((option) => {
+        option.addEventListener('click', () => {
+          const locale = (option as HTMLElement).dataset['locale'];
+          if (locale) {
+            selectLocale(locale);
+          }
+        });
+      });
+
+      // Close on click outside
+      document.addEventListener('click', (e) => {
+        if (!toggle.contains(e.target as Node)) {
+          closeList();
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeList();
+        }
+      });
+
+      // Listen for locale changes from other sources
+      window.addEventListener('localechange', () => {
+        updateActiveState();
+      });
+
+      // Initial active state
+      updateActiveState();
+    });
+  }
+
+  // TypeScript declaration for window.__i18n
+  declare global {
+    interface Window {
+      __i18n?: {
+        t: (component: string, key: string) => string;
+        setLocale: (locale: string) => void;
+        getLocale: () => string;
+        locales: Array<{ code: string; name: string; nativeName: string }>;
+        translations: Record<string, Record<string, Record<string, string>>>;
+      };
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initI18nToggle);
+  } else {
+    initI18nToggle();
+  }
+
+  // Re-initialize on Astro page navigation
+  document.addEventListener('astro:page-load', initI18nToggle);
+</script>

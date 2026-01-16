@@ -1,0 +1,46 @@
+{
+  "name": "portfolio",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/personal/rcristea/portfolio/src",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm astro dev",
+        "cwd": "apps/personal/rcristea/portfolio"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm astro check && pnpm astro build",
+        "cwd": "apps/personal/rcristea/portfolio"
+      },
+      "outputs": ["{workspaceRoot}/dist/apps/personal/rcristea/portfolio"]
+    },
+    "preview": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm astro preview",
+        "cwd": "apps/personal/rcristea/portfolio"
+      },
+      "dependsOn": ["build"]
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm astro check",
+        "cwd": "apps/personal/rcristea/portfolio"
+      }
+    },
+    "sync": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm astro sync",
+        "cwd": "apps/personal/rcristea/portfolio"
+      }
+    }
+  },
+  "tags": []
+}

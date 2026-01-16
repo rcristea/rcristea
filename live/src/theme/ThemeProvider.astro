@@ -1,0 +1,76 @@
+---
+/**
+ * ThemeProvider - CSS Variable Injection & Theme Initialization
+ *
+ * Responsibilities:
+ * - Injects CSS variables for both dark and light themes
+ * - Detects initial theme from localStorage or system preference
+ * - Sets the `data-theme` attribute on the document
+ *
+ * This component should be included once in the layout's <head>.
+ *
+ * @example
+ * <head>
+ *   <ThemeProvider />
+ * </head>
+ */
+
+import { dark, light, getThemeVars } from './index';
+
+const darkVars = getThemeVars(dark);
+const lightVars = getThemeVars(light);
+
+/**
+ * Generate CSS variable declarations from theme vars object
+ */
+function generateCssVars(vars: Record<string, string>): string {
+  return Object.entries(vars)
+    .map(([key, value]) => `--${key}: ${value};`)
+    .join('\n    ');
+}
+
+const darkCss = generateCssVars(darkVars);
+const lightCss = generateCssVars(lightVars);
+
+const themeCss = `
+  :root,
+  [data-theme='dark'] {
+    ${darkCss}
+  }
+
+  [data-theme='light'] {
+    ${lightCss}
+  }
+`;
+---
+
+<style is:inline set:html={themeCss}></style>
+<Fragment set:html={`<style>${themeCss}</style>`} />
+
+<script is:inline>
+  /**
+   * Theme initialization script
+   * Runs immediately (before paint) to prevent flash of wrong theme
+   */
+  (function initTheme() {
+    const STORAGE_KEY = 'theme';
+    
+    function getInitialTheme() {
+      // Check localStorage first
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === 'dark' || stored === 'light') {
+        return stored;
+      }
+      
+      // Fall back to system preference
+      if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+        return 'light';
+      }
+      
+      return 'dark';
+    }
+    
+    const theme = getInitialTheme();
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>

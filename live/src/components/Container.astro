@@ -1,0 +1,125 @@
+---
+/**
+ * Container Component
+ * 
+ * A responsive container that centers content and applies consistent max-widths.
+ * Similar to MUI's Container component with size variants.
+ * 
+ * @props
+ * - maxWidth: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full' (default: 'lg')
+ *   - xs: 444px (small forms, cards)
+ *   - sm: 600px (narrow content)
+ *   - md: 900px (standard content)
+ *   - lg: 1200px (wide content)
+ *   - xl: 1536px (extra wide)
+ *   - full: 100% (no max-width)
+ * 
+ * - padding: 'none' | 'sm' | 'md' | 'lg' (default: 'md')
+ *   - none: 0
+ *   - sm: 1rem / 1.5rem / 2rem (mobile/tablet/desktop)
+ *   - md: 2rem / 3rem / 4rem
+ *   - lg: 3rem / 4rem / 6rem
+ * 
+ * - className: string (optional) - Additional CSS classes
+ * 
+ * Usage:
+ * <Container maxWidth="md">
+ *   <h1>Content here</h1>
+ * </Container>
+ */
+
+export interface Props {
+  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  padding?: 'none' | 'sm' | 'md' | 'lg';
+  className?: string;
+}
+
+const {
+  maxWidth = 'lg',
+  padding = 'md',
+  className = '',
+} = Astro.props;
+---
+
+<div class={`container container-${maxWidth} padding-${padding} ${className}`}>
+  <slot />
+</div>
+
+<style>
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Max-width variants */
+  .container-xs {
+    max-width: 444px;
+  }
+
+  .container-sm {
+    max-width: 600px;
+  }
+
+  .container-md {
+    max-width: 900px;
+  }
+
+  .container-lg {
+    max-width: 1200px;
+  }
+
+  .container-xl {
+    max-width: 1536px;
+  }
+
+  .container-full {
+    max-width: 100%;
+  }
+
+  /* Padding variants - Desktop */
+  .padding-none {
+    padding: 0;
+  }
+
+  .padding-sm {
+    padding: 2rem;
+  }
+
+  .padding-md {
+    padding: 4rem 2rem;
+  }
+
+  .padding-lg {
+    padding: 6rem 2rem;
+  }
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .padding-sm {
+      padding: 1.5rem;
+    }
+
+    .padding-md {
+      padding: 3rem 1.5rem;
+    }
+
+    .padding-lg {
+      padding: 4rem 1.5rem;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .padding-sm {
+      padding: 1rem;
+    }
+
+    .padding-md {
+      padding: 2rem 1rem;
+    }
+
+    .padding-lg {
+      padding: 3rem 1rem;
+    }
+  }
+</style>

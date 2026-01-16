@@ -1,0 +1,120 @@
+---
+/**
+ * TimelineEventBodies
+ *
+ * Pre-renders all event body components as hidden HTML.
+ * The TimelineModal.tsx will use JavaScript to clone and display
+ * the appropriate content when an event is selected.
+ *
+ * This pattern bridges Astro components with React islands.
+ */
+
+import { timelineEvents } from '../../data/timeline';
+
+// Import all event components
+import HighSchool from './events/HighSchool.astro';
+import ITTutorGGC from './events/ITTutorGGC.astro';
+import TeachingAssistantGGC from './events/TeachingAssistantGGC.astro';
+import ComputerScienceUGA from './events/ComputerScienceUGA.astro';
+import GAVELLabUGA from './events/GAVELLabUGA.astro';
+import CTOImperia from './events/CTOImperia.astro';
+import SWECarCareers from './events/SWECarCareers.astro';
+import CTOCarCareers from './events/CTOCarCareers.astro';
+import SWEInternNCR from './events/SWEInternNCR.astro';
+import SWETalitrix from './events/SWETalitrix.astro';
+import SWEWeatherCompany from './events/SWEWeatherCompany.astro';
+import SWEIINCRVoyix from './events/SWEIINCRVoyix.astro';
+import FrontendTechLeadNCRVoyix from './events/FrontendTechLeadNCRVoyix.astro';
+import CTOExcelsusData from './events/CTOExcelsusData.astro';
+import PRCAudioEngineer from './events/PRCAudioEngineer.astro';
+import EmmausAudioEngineer from './events/EmmausAudioEngineer.astro';
+
+// Example components (kept for reference/testing)
+import ExampleWork1 from './events/ExampleWork1.astro';
+import ExampleWork2 from './events/ExampleWork2.astro';
+import ExampleEducation1 from './events/ExampleEducation1.astro';
+import ExampleProject1 from './events/ExampleProject1.astro';
+import ExampleProject2 from './events/ExampleProject2.astro';
+import ExampleProject3 from './events/ExampleProject3.astro';
+import ExampleGap from './events/ExampleGap.astro';
+
+// Component registry mapping names to components
+const componentMap: Record<string, any> = {
+  // Real event components
+  HighSchool,
+  ITTutorGGC,
+  TeachingAssistantGGC,
+  ComputerScienceUGA,
+  GAVELLabUGA,
+  CTOImperia,
+  SWECarCareers,
+  CTOCarCareers,
+  SWEInternNCR,
+  SWETalitrix,
+  SWEWeatherCompany,
+  SWEIINCRVoyix,
+  FrontendTechLeadNCRVoyix,
+  CTOExcelsusData,
+  PRCAudioEngineer,
+  EmmausAudioEngineer,
+  // Example components
+  ExampleWork1,
+  ExampleWork2,
+  ExampleEducation1,
+  ExampleProject1,
+  ExampleProject2,
+  ExampleProject3,
+  ExampleGap,
+};
+
+// Get unique events that have valid components
+const eventsWithComponents = timelineEvents.filter(
+  (event) => event.body?.component && componentMap[event.body.component]
+);
+---
+
+<!-- 
+  Hidden container with pre-rendered event bodies.
+  Each event body is wrapped in a div with data-event-id for lookup.
+  The React modal will clone the innerHTML when displaying an event.
+-->
+<div id="timeline-event-bodies" style="display: none;" aria-hidden="true">
+  {eventsWithComponents.map((event) => {
+    const Component = componentMap[event.body.component];
+    return (
+      <div data-event-id={event.id} class="timeline-event-body-template">
+        <Component {...event.body.props} />
+      </div>
+    );
+  })}
+</div>
+
+<script>
+  /**
+   * Injects pre-rendered Astro component content into the React modal.
+   * Listens for custom events from TimelineModal.tsx
+   */
+  function setupEventBodyInjection() {
+    const bodiesContainer = document.getElementById('timeline-event-bodies');
+    if (!bodiesContainer) return;
+
+    // Listen for modal content requests
+    window.addEventListener('timeline:requestEventBody', ((e: CustomEvent<{ eventId: string }>) => {
+      const { eventId } = e.detail;
+      const template = bodiesContainer.querySelector(`[data-event-id="${eventId}"]`);
+      const target = document.querySelector('.timeline-modal-component');
+      
+      if (template && target) {
+        // Clone the template content into the modal
+        target.innerHTML = template.innerHTML;
+      }
+    }) as EventListener);
+  }
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupEventBodyInjection);
+  } else {
+    setupEventBodyInjection();
+  }
+</script>

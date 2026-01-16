@@ -1,0 +1,123 @@
+---
+/**
+ * ThemeToggle - Dark/Light Mode Toggle Button
+ *
+ * A button that toggles between dark and light themes.
+ * - Shows moon icon in light mode (click to go dark)
+ * - Shows sun icon in dark mode (click to go light)
+ *
+ * Note: Theme initialization is handled by ThemeProvider.
+ * This component only handles toggling.
+ *
+ * @example
+ * <ThemeToggle />
+ */
+
+import sunIcon from '../assets/icon/sun.svg?raw';
+import moonIcon from '../assets/icon/moon.svg?raw';
+---
+
+<button
+  class="theme-toggle"
+  aria-label="Toggle theme"
+  data-theme-toggle
+>
+  <!-- Moon icon: shown in light mode (click to go dark) -->
+  <span class="theme-toggle__icon theme-toggle__icon--moon">
+    <Fragment set:html={moonIcon} />
+  </span>
+  <!-- Sun icon: shown in dark mode (click to go light) -->
+  <span class="theme-toggle__icon theme-toggle__icon--sun">
+    <Fragment set:html={sunIcon} />
+  </span>
+</button>
+
+<style>
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    color: var(--text-main);
+    transition:
+      color 0.3s cubic-bezier(0, 0, 0.2, 1),
+      transform 0.2s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .theme-toggle:hover {
+    color: var(--primary-main);
+    transform: scale(1.1);
+  }
+
+  .theme-toggle:active {
+    transform: scale(0.95);
+  }
+
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--primary-main);
+    outline-offset: 2px;
+  }
+
+  .theme-toggle__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Default: show moon (for light mode - click to go dark) */
+  .theme-toggle__icon--moon {
+    display: block;
+  }
+
+  .theme-toggle__icon--sun {
+    display: none;
+  }
+
+  /* Dark mode: show sun (click to go light) */
+  :global([data-theme='dark']) .theme-toggle__icon--moon {
+    display: none;
+  }
+
+  :global([data-theme='dark']) .theme-toggle__icon--sun {
+    display: block;
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'theme';
+
+  function initThemeToggle(): void {
+    const toggles = document.querySelectorAll('[data-theme-toggle]');
+    
+    /**
+     * Toggles between dark and light themes
+     */
+    function toggleTheme(): void {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem(STORAGE_KEY, newTheme);
+    }
+
+    // Add click listeners to all toggle buttons
+    toggles.forEach((toggle) => {
+      toggle.addEventListener('click', toggleTheme);
+    });
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggle);
+  } else {
+    initThemeToggle();
+  }
+
+  // Re-initialize on Astro page navigation
+  document.addEventListener('astro:page-load', initThemeToggle);
+</script>

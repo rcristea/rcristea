@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import About from '../sections/About.astro';
+import Life from '../sections/Life.astro';
+import Projects from '../sections/Projects.astro';
+import Resume from '../sections/Resume.astro';
+import PageIndicator from '../components/PageIndicator.astro';
+
+const sections = [
+  { id: 'about' },
+  { id: 'projects' },
+  { id: 'resume' },
+  // { id: 'life' },
+];
+---
+
+<Layout title="Ruben Cristea - Software Engineer">
+  <main>
+    <About />
+    <Projects />
+    <Resume />
+    <!-- <Life /> -->
+  </main>
+  
+  <PageIndicator 
+    sections={sections}
+    config={{
+      dotSize: 12,
+      activeDotHeight: 24,
+      gap: 15,
+      rightOffset: 25,
+    }}
+  />
+</Layout>
+
+<style>
+  main {
+    position: relative;
+  }
+  
+  .section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .section h1 {
+    font-size: 8rem;
+    color: var(--primary-main);
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .section-2 h1 {
+    color: var(--primary-light);
+  }
+  
+  .section-3 h1 {
+    color: var(--primary-main);
+  }
+  
+  .section-4 h1 {
+    color: var(--primary-dark);
+  }
+  
+  .section-5 h1 {
+    color: var(--primary-main);
+  }
+</style>

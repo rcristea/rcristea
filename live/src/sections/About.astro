@@ -1,0 +1,43 @@
+---
+/**
+ * About Section
+ *
+ * Displays information about the portfolio owner.
+ * Uses reusable Section, Container, and Typography components.
+ */
+
+import Section from '../components/Section.astro';
+import Container from '../components/Container.astro';
+import Typography from '../components/Typography.astro';
+---
+
+<Section id="about" minHeight="full">
+  <Container maxWidth="md" padding="md">
+    <div class="content-wrapper">
+      <Typography variant="h1" color="text-main" data-i18n="about.name" />
+      <Typography variant="h6" color="text-light" data-i18n="about.tagline" />
+
+      <div class="about-content">
+        <Typography
+          variant="body1"
+          color="text-main"
+          data-i18n="about.description"
+        />
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+</style>

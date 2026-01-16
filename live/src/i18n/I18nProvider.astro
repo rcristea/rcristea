@@ -1,0 +1,133 @@
+---
+/**
+ * I18nProvider - Internationalization Provider
+ *
+ * Responsibilities:
+ * - Injects all translations into the page as a global object
+ * - Detects initial locale from localStorage or browser preference
+ * - Sets the `data-locale` attribute on the document
+ * - Provides global translation function
+ *
+ * This component should be included once in the layout's <head>.
+ *
+ * @example
+ * <head>
+ *   <I18nProvider />
+ * </head>
+ */
+
+import { translations, LOCALES, DEFAULT_LOCALE } from './index';
+
+const translationsJson = JSON.stringify(translations);
+const localesJson = JSON.stringify(LOCALES);
+---
+
+<script is:inline data-translations={translationsJson} data-locales={localesJson} data-default-locale={DEFAULT_LOCALE}>
+  /**
+   * I18n initialization script
+   * Runs immediately to set up translations
+   */
+  (function initI18n() {
+    const STORAGE_KEY = 'locale';
+    const script = document.currentScript;
+
+    // Parse data from script attributes
+    const translations = JSON.parse(script.dataset.translations);
+    const locales = JSON.parse(script.dataset.locales);
+    const defaultLocale = script.dataset.defaultLocale;
+    const localeCodes = locales.map((l) => l.code);
+
+    /**
+     * Gets initial locale from storage or browser preference
+     */
+    function getInitialLocale() {
+      // Check localStorage first
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored && localeCodes.includes(stored)) {
+        return stored;
+      }
+
+      // Check browser language preference
+      const browserLang = navigator.language.split('-')[0];
+      if (localeCodes.includes(browserLang)) {
+        return browserLang;
+      }
+
+      return defaultLocale;
+    }
+
+    /**
+     * Get a value from an object by dot-notation path
+     * @param {object} obj - The object to traverse
+     * @param {string} path - Dot-notation path (e.g., 'projects.portfolio.title')
+     * @returns {string|undefined} The value at the path
+     */
+    function getByPath(obj, path) {
+      return path.split('.').reduce((acc, part) => acc?.[part], obj);
+    }
+
+    function t(path) {
+      const locale = document.documentElement.getAttribute('data-locale') || defaultLocale;
+      const value = getByPath(translations[locale], path);
+      if (typeof value === 'string') {
+        return value;
+      }
+      // Fallback to default locale
+      const fallback = getByPath(translations[defaultLocale], path);
+      if (typeof fallback === 'string') {
+        return fallback;
+      }
+      return path;
+    }
+
+    function applyTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const path = el.dataset.i18n;
+        if (path) {
+          el.textContent = t(path);
+        }
+      });
+    }
+
+    /**
+     * Set locale and update all translated elements
+     */
+    function setLocale(locale) {
+      if (!localeCodes.includes(locale)) return;
+
+      document.documentElement.setAttribute('data-locale', locale);
+      localStorage.setItem(STORAGE_KEY, locale);
+
+      // Update all elements with data-i18n attribute
+      applyTranslations();
+
+      // Dispatch custom event for components that need to react
+      window.dispatchEvent(new CustomEvent('localechange', { detail: { locale } }));
+    }
+
+    // Expose globals
+    window.__i18n = {
+      t,
+      setLocale,
+      getLocale: () => document.documentElement.getAttribute('data-locale') || defaultLocale,
+      locales,
+      translations,
+      applyTranslations,
+    };
+
+    // Initialize locale immediately (set attribute and storage)
+    const initialLocale = getInitialLocale();
+    document.documentElement.setAttribute('data-locale', initialLocale);
+    localStorage.setItem(STORAGE_KEY, initialLocale);
+
+    // Apply translations once DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyTranslations);
+    } else {
+      applyTranslations();
+    }
+
+    // Also handle Astro page navigation
+    document.addEventListener('astro:page-load', applyTranslations);
+  })();
+</script>

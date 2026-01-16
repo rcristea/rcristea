@@ -1,0 +1,56 @@
+---
+/**
+ * SWETalitrix - Software Engineer at Talitrix
+ */
+
+export interface Props {
+  company?: string;
+  location?: string;
+  responsibilities?: string[];
+  technologies?: string[];
+}
+
+const {
+  company = 'Talitrix',
+  location = 'Alpharetta, GA',
+  responsibilities = [
+    'Developed and maintained mission-critical location data infrastructure ensuring the safety of victims by accurately tracking and monitoring high-risk individuals',
+    'Designed and implemented algorithms that processed and analyzed location data from hardware devices, producing real-time compliance and violation data',
+    'Engineered a robust backend system to process and analyze high-volume location data for electronic monitoring applications',
+    'Implemented complex algorithms to determine compliance with critical parameters such as curfews and exclusion zones',
+    'Implemented Agile DevOps methodologies, enhancing team collaboration and project progress monitoring',
+  ],
+  technologies = ['Django', 'Django REST Framework', 'PostgreSQL', 'Agile', 'DevOps'],
+} = Astro.props;
+---
+
+<div class="event-work">
+  <div class="event-work-header">
+    <div class="event-work-company">{company}</div>
+    {location && <div class="event-work-location">📍 {location}</div>}
+  </div>
+
+  <section class="event-work-section">
+    <h4>Responsibilities</h4>
+    <ul class="event-work-list">
+      {responsibilities.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  </section>
+
+  {technologies.length > 0 && (
+    <section class="event-work-section">
+      <h4>Technologies</h4>
+      <div class="event-tags">
+        {technologies.map((tech) => (
+          <span class="event-tag">{tech}</span>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <div class="event-media-slot" data-slot="media">
+    <slot name="media" />
+  </div>
+</div>

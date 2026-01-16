@@ -1,0 +1,63 @@
+---
+/**
+ * ComputerScienceUGA - Computer Science at University of Georgia
+ */
+
+export interface Props {
+  school?: string;
+  degree?: string;
+  location?: string;
+  honors?: string[];
+  coursework?: string[];
+}
+
+const {
+  school = 'University of Georgia',
+  degree = 'Bachelor of Science in Computer Science',
+  location = 'Athens, GA',
+  honors = ['Cum Laude'],
+  coursework = [
+    'Data Structures & Algorithms',
+    'Software Engineering',
+    'Database Systems',
+    'Computer Networks',
+  ],
+} = Astro.props;
+---
+
+<div class="event-education">
+  <div class="event-education-header">
+    <div class="event-education-school">{school}</div>
+    {location && <div class="event-education-location">📍 {location}</div>}
+  </div>
+
+  <div class="event-education-degree">
+    <span class="event-education-degree-name">{degree}</span>
+  </div>
+
+  {honors.length > 0 && (
+    <section class="event-education-section">
+      <h4>Honors</h4>
+      <div class="event-tags">
+        {honors.map((honor) => (
+          <span class="event-tag event-tag-highlight">{honor}</span>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {coursework.length > 0 && (
+    <section class="event-education-section">
+      <h4>Relevant Coursework</h4>
+      <div class="event-tags">
+        {coursework.map((course) => (
+          <span class="event-tag">{course}</span>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <div class="event-media-slot" data-slot="media">
+    <slot name="media" />
+  </div>
+</div>

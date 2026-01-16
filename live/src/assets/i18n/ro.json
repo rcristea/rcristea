@@ -1,0 +1,143 @@
+{
+  "astronaut": {
+    "greeting": "Salut!"
+  },
+  "page-indicator": {
+    "about": "Despre",
+    "projects": "Proiecte",
+    "resume": "Experiență",
+    "life": "Viața"
+  },
+  "about": {
+    "name": "Ruben Cristea",
+    "tagline": "Inginer Software · Lider de inginerie · Mereu mă depășește situația",
+    "description": "Arhitectura Sistemelor la Scară Mare & Platforme Inteligente. Transformarea provocărilor complexe moștenite în infrastructură simplificată și modulară."
+  },
+  "resume": {
+    "title": "Experiență",
+    "summary": "Inginer software motivat cu peste 5 ani de experiență, dezvoltând aplicații de înaltă performanță și abordând soluții complexe de infrastructură de cod. Abilități în arhitectură, implementare, testare și întreținere a soluțiilor software.",
+    "experience": {
+      "ncr-voyix-lead": {
+        "role": "Inginer Software II (Lider Tehnic Frontend)",
+        "company": "NCR Voyix · Atlanta, GA",
+        "date": "August 2025 - Prezent",
+        "bullet1": "Am condus o echipă de ingineri pentru o platformă de punct de vânzare bazată pe AI, destinată de la SMB la enterprise. Am arhitecturat și implementat arhitectura frontend pentru un renderer bazat pe configurație care compune dinamic interfața la runtime.",
+        "bullet2": "Am recrutat și integrat o echipă de inginerie performantă, am coordonat direcția tehnică cu backend, produs și UX, am condus planificarea inginerească și distribuția sarcinilor, și am prezentat progresul către stakeholderii C-suite.",
+        "bullet3": "Am construit un editor drag-and-drop proof-of-concept pentru a valida UX-ul builder-ului înainte de implementarea completă și am definit motorul de layout/rendering. Am primit un grant de capital propriu de la CTO în recunoașterea leadershipului și impactului."
+      },
+      "ncr-voyix": {
+        "role": "Inginer Software II",
+        "company": "NCR Voyix · Atlanta, GA",
+        "date": "Iunie 2024 - August 2025",
+        "bullet1": "Am condus investigația și dezvoltarea unei arhitecturi de platformă cloud inovatoare, cu o platformă web modulară de micro frontend federation, concepută pentru a alimenta atât aplicații noi, cât și cele moștenite.",
+        "bullet2": "Am deschis calea pentru un ecosistem de dezvoltare unificat pentru a eficientiza operațiunile și a stimula colaborarea între echipele NCR folosind platforma pe care am dezvoltat-o.",
+        "bullet3": "Am dezvoltat o aplicație de management back office bazată pe microservicii folosind React, NestJS și TypeScript. Am asigurat scalabilitate și adaptabilitate, depășind obiectivele proiectului."
+      },
+      "ibm-weather": {
+        "role": "Inginer Software",
+        "company": "IBM | The Weather Company · Atlanta, GA",
+        "date": "Martie 2023 - Iunie 2024",
+        "bullet1": "Am dezvoltat interfețe de utilizator de înaltă performanță, bazate pe date, pentru aplicații web, folosind framework-uri moderne pentru a asigura integritatea robustă a datelor și operațiuni asincrone eficiente.",
+        "bullet2": "Am executat migrarea infrastructurii web critice de la IBM Cloud la AWS, îmbunătățind scalabilitatea și reziliența sistemului, permițând o creștere de 50% a cererilor maxime pe secundă.",
+        "bullet3": "Am proiectat și optimizat cron jobs pentru sarcini critice, reducând sarcinile de generare radar cu 90%. Am condus dezvoltarea POC pentru o aplicație TV viitoare, deblocând noi oportunități de afaceri."
+      },
+      "talitrix": {
+        "role": "Inginer Software",
+        "company": "Talitrix · Alpharetta, GA",
+        "date": "August 2022 - Martie 2023",
+        "bullet1": "Am dezvoltat și întreținut o infrastructură critică de date de localizare la Talitrix, asigurând siguranța victimelor prin urmărirea și monitorizarea precisă a indivizilor cu risc ridicat prin gestionarea riguroasă a datelor.",
+        "bullet2": "Am proiectat și implementat algoritmi care procesau și analizau date de localizare de la dispozitive hardware, producând date de conformitate și încălcare în timp real pentru aplicații de monitorizare electronică.",
+        "bullet3": "Am construit un sistem backend robust utilizând Django, Django REST Framework și PostgreSQL pentru a procesa date de localizare de volum mare, implementând algoritmi complecși pentru ore de interdicție și zone de excludere."
+      },
+      "carcareers": {
+        "role": "Inginer Software Full Stack",
+        "company": "CARCAREERS.COM · Remote, SUA",
+        "date": "August 2020 - Martie 2023",
+        "bullet1": "Am arhitecturat soluții scalabile, inclusiv algoritmi și design de sistem, într-o structură monorepo (frontend React, backend NestJS), pentru a îndeplini cerințele de afaceri în evoluție.",
+        "bullet2": "Am dezvoltat soluții software pe întreg ciclul de dezvoltare, respectând standardele companiei, utilizând o structură monorepo și implementând pe GKE.",
+        "bullet3": "Am condus o echipă de ingineri și designeri în dezvoltarea unei noi faze a platformei, îmbunătățind semnificativ scalabilitatea și experiența utilizatorului pentru expansiunea la nivel național."
+      },
+      "uga-gavel": {
+        "role": "Asistent Laborator Dezvoltare Software",
+        "company": "Universitatea din Georgia - GAVEL Lab · Athens, GA",
+        "date": "Ianuarie 2022 - Martie 2023",
+        "bullet1": "Rol part-time la Laboratorul de Jocuri și Medii Virtuale al UGA. Am proiectat și creat medii virtuale folosind Unity și C# conform cerințelor cercetătorilor pentru a înțelege mai bine cum influențează mediile virtuale oamenii.",
+        "bullet2": "Am creat medii pentru a testa tehnologia de urmărire facială și oculară HP Reverb G2 Omnicept Edition pentru a explora noi posibilități pentru proiecte de cercetare viitoare.",
+        "bullet3": "Am colaborat cu echipele de cercetare pentru a construi experiențe VR imersive pentru studii academice despre percepția și comportamentul uman în medii virtuale."
+      }
+    },
+    "skills": {
+      "languages": {
+        "title": "Limbaje de Programare",
+        "list": "TypeScript, JavaScript, Go, C++, Python, HTML5, CSS, Kotlin"
+      },
+      "software": {
+        "title": "Software și Tehnologii",
+        "frameworks": {
+          "label": "Framework-uri/Biblioteci",
+          "items": "React, Redux, NX, NestJS, Astro, Django, Node"
+        },
+        "ai": {
+          "label": "Instrumente AI",
+          "items": "GitHub Copilot, Claude"
+        },
+        "database": {
+          "label": "Baze de Date",
+          "items": "SQL, Postgres, Redis, CouchDB, Ditto, MongoDB"
+        },
+        "architecture": {
+          "label": "Arhitectură",
+          "items": "Kubernetes, Docker, Jenkins, Terraform"
+        },
+        "platforms": {
+          "label": "Platforme",
+          "items": "Google Cloud Platform, AWS, Windows, Mac OS X, Linux, Unix, Android, iOS"
+        },
+        "vcs": {
+          "label": "VCS",
+          "items": "Git, PlasticSCM"
+        },
+        "sdlc": {
+          "label": "Instrumente SDLC",
+          "items": "Jira, Azure DevOps, GitHub"
+        }
+      }
+    },
+    "education": {
+      "title": "Educație",
+      "school": "Universitatea din Georgia",
+      "location": "Athens, GA",
+      "degree": "Licență în Științe",
+      "major": "Informatică",
+      "honors": "Cum Laude"
+    }
+  },
+  "projects": {
+    "title": "Proiecte",
+    "subtitle": "O colecție de proiecte pe care le-am construit și la care am contribuit.",
+    "adk": {
+      "title": "Agentic Development Kit",
+      "description": "Toolkit open-source pentru construirea agenților AI inteligenți cu memorie persistentă, căutare semantică și orchestrare de instrumente. Include un Motor de Memorie cu stocare vectorială Redis, integrare LLM și un framework modular pentru agenți."
+    },
+    "excelsus-data": {
+      "title": "Excelsus Data",
+      "description": "Co-fondator al unei companii de verificare a antecedentelor care revoluționează industria cu tehnologie de vârf. Oferă servicii de screening mai rapide, mai precise și accesibile, cu reducere de 50% a costurilor, procesare de 10x mai rapidă și acuratețe de 99.9%."
+    },
+    "carcareers": {
+      "title": "CARCAREERS.COM",
+      "description": "Am construit platforma de angajare #1 pentru joburi auto din SUA în calitate de CTO. Platformă full-stack care conectează candidații cu angajatorii în industria auto, care reprezintă până la 1/3 din toate locurile de muncă din SUA, cu aplicații web și mobile."
+    },
+    "portfolio": {
+      "title": "Website Portofoliu",
+      "description": "Portofoliu personal construit cu Astro, cu o cronologie interactivă, animații fluide cu GSAP și o temă modernă întunecată. Prezintă istoricul carierei cu o vizualizare unică de tip branch/merge."
+    },
+    "github-more": {
+      "title": "Mai multe pe GitHub",
+      "description": "Explorează mai multe dintre proiectele mele open-source, contribuții și experimente pe GitHub."
+    },
+    "oj-studios": {
+      "title": "Orange Juice Studios",
+      "description": "Proiect de pasiune pentru crearea de jocuri video inovatoare. Construiesc experiențe XR multiplayer open-source cu Unity și jocuri cross-platform cu Godot. O ieșire creativă la care planuiesc să mă întorc."
+    }
+  }
+}

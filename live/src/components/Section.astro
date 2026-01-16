@@ -1,0 +1,124 @@
+---
+/**
+ * Section Component
+ * 
+ * A full-width section wrapper with consistent spacing and optional ID for navigation.
+ * Combines well with Container for responsive content layout.
+ * 
+ * @props
+ * - id: string (optional) - Section ID for anchor links
+ * - minHeight: 'none' | 'sm' | 'md' | 'full' (default: 'full')
+ *   - none: auto height
+ *   - sm: min-height 50vh
+ *   - md: min-height 80vh
+ *   - full: min-height 100vh
+ * 
+ * - display: 'block' | 'flex' (default: 'flex')
+ * - align: 'start' | 'center' | 'end' (default: 'center') - Vertical alignment when display is flex
+ * - justify: 'start' | 'center' | 'end' (default: 'center') - Horizontal alignment when display is flex
+ * - className: string (optional) - Additional CSS classes
+ * 
+ * Usage:
+ * <Section id="about" minHeight="full">
+ *   <Container maxWidth="md">
+ *     <Typography variant="h2">About Me</Typography>
+ *   </Container>
+ * </Section>
+ */
+
+export interface Props {
+  id?: string;
+  minHeight?: 'none' | 'sm' | 'md' | 'full';
+  display?: 'block' | 'flex';
+  align?: 'start' | 'center' | 'end';
+  justify?: 'start' | 'center' | 'end';
+  className?: string;
+}
+
+const {
+  id,
+  minHeight = 'full',
+  display = 'flex',
+  align = 'center',
+  justify = 'center',
+  className = '',
+} = Astro.props;
+---
+
+<section
+  id={id}
+  data-section
+  class={`section height-${minHeight} display-${display} align-${align} justify-${justify} ${className}`}
+>
+  <slot />
+</section>
+
+<style>
+  .section {
+    position: relative;
+    width: 100%;
+  }
+
+  /* Min-height variants */
+  .height-none {
+    min-height: auto;
+  }
+
+  .height-sm {
+    min-height: 50vh;
+  }
+
+  .height-md {
+    min-height: 80vh;
+  }
+
+  .height-full {
+    min-height: 100vh;
+  }
+
+  /* Display modes */
+  .display-block {
+    display: block;
+  }
+
+  .display-flex {
+    display: flex;
+  }
+
+  /* Flexbox alignment */
+  .display-flex.align-start {
+    align-items: flex-start;
+  }
+
+  .display-flex.align-center {
+    align-items: center;
+  }
+
+  .display-flex.align-end {
+    align-items: flex-end;
+  }
+
+  .display-flex.justify-start {
+    justify-content: flex-start;
+  }
+
+  .display-flex.justify-center {
+    justify-content: center;
+  }
+
+  .display-flex.justify-end {
+    justify-content: flex-end;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .height-full {
+      min-height: auto;
+      padding: 3rem 0;
+    }
+
+    .height-md {
+      min-height: 60vh;
+    }
+  }
+</style>

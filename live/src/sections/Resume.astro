@@ -1,0 +1,322 @@
+---
+/**
+ * Resume Section
+ *
+ * Professional resume/CV section with work experience.
+ * Uses i18n translations for multilingual support.
+ */
+
+import Section from '../components/Section.astro';
+import Container from '../components/Container.astro';
+import Typography from '../components/Typography.astro';
+
+const experiences = [
+  {
+    id: 'ncr-voyix-lead',
+    dateKey: 'resume.experience.ncr-voyix-lead.date',
+  },
+  {
+    id: 'ncr-voyix',
+    dateKey: 'resume.experience.ncr-voyix.date',
+  },
+  {
+    id: 'ibm-weather',
+    dateKey: 'resume.experience.ibm-weather.date',
+  },
+  {
+    id: 'talitrix',
+    dateKey: 'resume.experience.talitrix.date',
+  },
+  {
+    id: 'carcareers',
+    dateKey: 'resume.experience.carcareers.date',
+  },
+  {
+    id: 'uga-gavel',
+    dateKey: 'resume.experience.uga-gavel.date',
+  },
+];
+
+const skillCategories = [
+  { id: 'frameworks', labelKey: 'resume.skills.software.frameworks' },
+  { id: 'ai', labelKey: 'resume.skills.software.ai' },
+  { id: 'database', labelKey: 'resume.skills.software.database' },
+  { id: 'architecture', labelKey: 'resume.skills.software.architecture' },
+  { id: 'platforms', labelKey: 'resume.skills.software.platforms' },
+  { id: 'vcs', labelKey: 'resume.skills.software.vcs' },
+  { id: 'sdlc', labelKey: 'resume.skills.software.sdlc' },
+];
+---
+
+<Section id="resume" minHeight="full">
+  <Container maxWidth="lg" padding="md">
+    <div class="resume-wrapper">
+      <header class="resume-header">
+        <Typography variant="h2" color="text-main" data-i18n="resume.title" />
+        <Typography variant="body1" color="text-light" data-i18n="resume.summary" />
+      </header>
+
+      <div class="resume-content">
+        <!-- Left Column: Experience -->
+        <div class="experience-column">
+          <div class="experience-list">
+            {
+              experiences.map((exp) => (
+                <article class="experience-card">
+                  <div class="experience-header">
+                    <div class="experience-titles">
+                      <Typography
+                        variant="h4"
+                        color="primary-main"
+                        data-i18n={`resume.experience.${exp.id}.role`}
+                      />
+                      <Typography
+                        variant="subtitle1"
+                        color="text-main"
+                        data-i18n={`resume.experience.${exp.id}.company`}
+                      />
+                    </div>
+                    <div class="experience-meta">
+                      <Typography
+                        variant="caption"
+                        color="text-light"
+                        className="experience-date"
+                        data-i18n={exp.dateKey}
+                      />
+                    </div>
+                  </div>
+                  <ul class="experience-bullets">
+                    <li>
+                      <Typography
+                        variant="body2"
+                        color="text-light"
+                        data-i18n={`resume.experience.${exp.id}.bullet1`}
+                      />
+                    </li>
+                    <li>
+                      <Typography
+                        variant="body2"
+                        color="text-light"
+                        data-i18n={`resume.experience.${exp.id}.bullet2`}
+                      />
+                    </li>
+                    <li>
+                      <Typography
+                        variant="body2"
+                        color="text-light"
+                        data-i18n={`resume.experience.${exp.id}.bullet3`}
+                      />
+                    </li>
+                  </ul>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Right Column: Skills & Education -->
+        <aside class="sidebar-column">
+          <!-- Programming Languages -->
+          <div class="sidebar-section">
+            <Typography variant="h5" color="primary-main" data-i18n="resume.skills.languages.title" />
+            <Typography variant="body2" color="text-light" data-i18n="resume.skills.languages.list" />
+          </div>
+
+          <!-- Software & Technologies -->
+          <div class="sidebar-section">
+            <Typography variant="h5" color="primary-main" data-i18n="resume.skills.software.title" />
+            <div class="skills-list">
+              {
+                skillCategories.map((cat) => (
+                  <div class="skill-item">
+                    <Typography
+                      variant="caption"
+                      color="text-main"
+                      className="skill-label"
+                      data-i18n={`resume.skills.software.${cat.id}.label`}
+                    />
+                    <Typography
+                      variant="body2"
+                      color="text-light"
+                      data-i18n={`resume.skills.software.${cat.id}.items`}
+                    />
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div class="sidebar-section">
+            <Typography variant="h5" color="primary-main" data-i18n="resume.education.title" />
+            <div class="education-item">
+              <Typography variant="subtitle2" color="text-main" data-i18n="resume.education.school" />
+              <Typography variant="body2" color="text-light" data-i18n="resume.education.location" />
+              <Typography variant="body2" color="text-light" data-i18n="resume.education.degree" />
+              <Typography variant="body2" color="text-light" data-i18n="resume.education.major" />
+              <Typography variant="caption" color="primary-light" data-i18n="resume.education.honors" />
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .resume-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: 100%;
+  }
+
+  .resume-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .resume-content {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 3rem;
+  }
+
+  .experience-column {
+    min-width: 0;
+  }
+
+  .experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .experience-card {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--background-light);
+  }
+
+  .experience-card:last-child {
+    border-bottom: none;
+  }
+
+  .experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .experience-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .experience-meta {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .experience-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .experience-bullets li {
+    position: relative;
+    padding-left: 1.25rem;
+  }
+
+  .experience-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--primary-main);
+    font-size: 0.875rem;
+  }
+
+  /* Sidebar */
+  .sidebar-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+  }
+
+  .sidebar-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .education-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .resume-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .sidebar-column {
+      position: static;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .resume-wrapper {
+      gap: 2rem;
+    }
+
+    .experience-card {
+      padding: 0.75rem 0;
+    }
+
+    .experience-header {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .experience-meta {
+      text-align: left;
+    }
+
+    .experience-bullets li {
+      padding-left: 1rem;
+    }
+
+    .sidebar-column {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

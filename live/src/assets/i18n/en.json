@@ -1,0 +1,143 @@
+{
+  "astronaut": {
+    "greeting": "Hey!"
+  },
+  "page-indicator": {
+    "about": "About",
+    "projects": "Projects",
+    "resume": "Resume",
+    "life": "Life"
+  },
+  "about": {
+    "name": "Ruben Cristea",
+    "tagline": "Software Engineer · Engineering Leader · Always in Over My Head",
+    "description": "Architecting High-Scale Systems & Intelligent Platforms. Transforming complex legacy challenges into streamlined, modular infrastructure."
+  },
+  "resume": {
+    "title": "Experience",
+    "summary": "Driven software engineer with 5+ years of experience, crafting high-performance applications and tackling complex code infrastructure solutions. Skilled at architecture, implementation, testing, and maintenance of software solutions.",
+    "experience": {
+      "ncr-voyix-lead": {
+        "role": "Software Engineer II (Frontend Tech Lead)",
+        "company": "NCR Voyix · Atlanta, GA",
+        "date": "August 2025 - Present",
+        "bullet1": "Led team of engineers for a cutting edge AI-driven, point-of-sale platform targeting SMB to enterprise. Architected and implemented the frontend architecture for a configuration-driven renderer that dynamically composes UI at runtime.",
+        "bullet2": "Recruited and onboarded a high performing engineering team, coordinated technical direction with backend, product, and UX, ran engineering planning and story distribution, and demoed progress to C-suite stakeholders.",
+        "bullet3": "Built a proof-of-concept drag-and-drop editor to validate the builder UX before full implementation and defined the layout/rendering engine. Awarded an equity grant by the CTO in recognition of leadership and impact."
+      },
+      "ncr-voyix": {
+        "role": "Software Engineer II",
+        "company": "NCR Voyix · Atlanta, GA",
+        "date": "June 2024 - August 2025",
+        "bullet1": "Spearheaded the investigation and development of a groundbreaking cloud platform architecture featuring a modular federation micro frontend web platform designed to power both new and legacy applications.",
+        "bullet2": "Paved the way for a unified development ecosystem to streamline operations and foster collaboration across teams at NCR using the platform I developed.",
+        "bullet3": "Developed a microservice-based back office management application using React, NestJS, and TypeScript. Ensured scalability and adaptability, exceeding project objectives."
+      },
+      "ibm-weather": {
+        "role": "Software Engineer",
+        "company": "IBM | The Weather Company · Atlanta, GA",
+        "date": "March 2023 - June 2024",
+        "bullet1": "Developed high-performance, data-driven user interfaces for web applications, using modern frameworks to ensure robust data integrity and efficient asynchronous operations.",
+        "bullet2": "Executed the migration of critical web infrastructure from IBM Cloud to AWS, enhanced system scalability and resilience allowing for a 50% increase in maximum requests per second.",
+        "bullet3": "Engineered and optimized cron jobs for critical tasks, reducing radar generation tasks by 90%. Led the development of POC for an upcoming TV app, unlocking new business avenues."
+      },
+      "talitrix": {
+        "role": "Software Engineer",
+        "company": "Talitrix · Alpharetta, GA",
+        "date": "August 2022 - March 2023",
+        "bullet1": "Developed and maintained a mission-critical location data infrastructure at Talitrix, ensuring the safety of victims by accurately tracking and monitoring high-risk individuals through rigorous data management.",
+        "bullet2": "Designed and implemented algorithms that processed and analyzed location data from hardware devices, producing real-time compliance and violation data for electronic monitoring applications.",
+        "bullet3": "Engineered a robust backend system utilizing Django, Django REST Framework, and PostgreSQL to process high-volume location data, implementing complex algorithms for curfews and exclusion zones."
+      },
+      "carcareers": {
+        "role": "Full Stack Software Engineer",
+        "company": "CARCAREERS.COM · Remote, USA",
+        "date": "August 2020 - March 2023",
+        "bullet1": "Architected scalable solutions, including algorithms and system designs, within a monorepo structure (React frontend, NestJS backend), to meet evolving business requirements.",
+        "bullet2": "Engineered software solutions throughout the full development lifecycle, adhering to company standards, utilizing a monorepo structure and deploying to GKE.",
+        "bullet3": "Led a team of engineers and designers in the development of a new phase of the platform, significantly enhancing scalability and user experience for nationwide expansion."
+      },
+      "uga-gavel": {
+        "role": "Software Development Lab Assistant",
+        "company": "University of Georgia - GAVEL Lab · Athens, GA",
+        "date": "January 2022 - March 2023",
+        "bullet1": "Part-time role at UGA's Games and Virtual Environments Lab. Designed and created virtual environments using Unity and C# outlined by researchers to better understand how virtual environments influence people.",
+        "bullet2": "Created environments to test HP Reverb G2 Omnicept Edition face and eye tracking technology to explore new possibilities for future research projects.",
+        "bullet3": "Collaborated with research teams to build immersive VR experiences for academic studies on human perception and behavior in virtual environments."
+      }
+    },
+    "skills": {
+      "languages": {
+        "title": "Programming Languages",
+        "list": "TypeScript, JavaScript, Go, C++, Python, HTML5, CSS, Kotlin"
+      },
+      "software": {
+        "title": "Software & Technologies",
+        "frameworks": {
+          "label": "Frameworks/Libraries",
+          "items": "React, Redux, NX, NestJS, Astro, Django, Node"
+        },
+        "ai": {
+          "label": "AI Tools",
+          "items": "GitHub Copilot, Claude"
+        },
+        "database": {
+          "label": "Database",
+          "items": "SQL, Postgres, Redis, CouchDB, Ditto, MongoDB"
+        },
+        "architecture": {
+          "label": "Architecture",
+          "items": "Kubernetes, Docker, Jenkins, Terraform"
+        },
+        "platforms": {
+          "label": "Platforms",
+          "items": "Google Cloud Platform, AWS, Windows, Mac OS X, Linux, Unix, Android, iOS"
+        },
+        "vcs": {
+          "label": "VCS",
+          "items": "Git, PlasticSCM"
+        },
+        "sdlc": {
+          "label": "SDLC Tools",
+          "items": "Jira, Azure DevOps, GitHub"
+        }
+      }
+    },
+    "education": {
+      "title": "Education",
+      "school": "University of Georgia",
+      "location": "Athens, GA",
+      "degree": "Bachelor of Science",
+      "major": "Computer Science",
+      "honors": "Cum Laude"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "A collection of projects I've built and contributed to.",
+    "adk": {
+      "title": "Agentic Development Kit",
+      "description": "Open-source toolkit for building intelligent AI agents with persistent memory, semantic search, and tool orchestration. Features a Memory Engine with Redis vector storage, LLM integration, and a modular agent framework."
+    },
+    "excelsus-data": {
+      "title": "Excelsus Data",
+      "description": "Co-founded a background screening company revolutionizing the industry with cutting-edge technology. Delivers faster, more accurate, and affordable screening services with 50% cost reduction, 10x faster processing, and 99.9% accuracy."
+    },
+    "carcareers": {
+      "title": "CARCAREERS.COM",
+      "description": "Built the #1 rated hiring platform for automotive jobs in the nation as CTO. Full-stack platform connecting job seekers with employers across up to 1/3 of all U.S. jobs that are auto-related, featuring web and mobile applications."
+    },
+    "portfolio": {
+      "title": "Portfolio Website",
+      "description": "Personal portfolio built with Astro, featuring an interactive timeline, smooth animations with GSAP, and a modern dark theme. Showcases career history with a unique branch/merge visualization."
+    },
+    "github-more": {
+      "title": "More on GitHub",
+      "description": "Explore more of my open-source projects, contributions, and experiments on GitHub."
+    },
+    "oj-studios": {
+      "title": "Orange Juice Studios",
+      "description": "Passion project for crafting innovative video games. Building open-source XR multiplayer experiences with Unity and cross-platform games with Godot. A creative outlet I plan to return to."
+    }
+  }
+}

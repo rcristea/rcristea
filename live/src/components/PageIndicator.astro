@@ -1,0 +1,433 @@
+---
+/**
+ * PageIndicator - Modern Pagination / Navigation Component
+ *
+ * A fixed navigation component with:
+ * - Section dots with animated active state and title labels
+ * - Theme toggle
+ * - Language selector (placeholder)
+ * - Position swap (left/right)
+ *
+ * @example
+ * <PageIndicator
+ *   sections={[
+ *     { id: 'about', title: 'About' },
+ *     { id: 'work', title: 'Work' }
+ *   ]}
+ *   config={{ dotSize: 12, activeDotHeight: 24 }}
+ * />
+ */
+
+import ThemeToggle from './ThemeToggle.astro';
+import I18nToggle from './I18nToggle.astro';
+import leftIcon from '../assets/icon/left.svg?raw';
+import rightIcon from '../assets/icon/right.svg?raw';
+import Typography from './Typography.astro';
+
+export interface Section {
+  id: string;
+}
+
+export interface PageIndicatorConfig {
+  dotSize?: number;
+  activeDotHeight?: number;
+  gap?: number;
+  rightOffset?: number;
+  separatorThickness?: number;
+}
+
+interface Props {
+  sections: Section[];
+  config?: PageIndicatorConfig;
+}
+
+const { sections, config = {} } = Astro.props;
+
+const defaultConfig: Required<PageIndicatorConfig> = {
+  dotSize: 12,
+  activeDotHeight: 24,
+  gap: 15,
+  rightOffset: 25,
+  separatorThickness: 3,
+};
+
+const mergedConfig = { ...defaultConfig, ...config };
+
+// Serialize config for client-side script
+const configJson = JSON.stringify(mergedConfig);
+const sectionsJson = JSON.stringify(sections);
+---
+
+<nav class="page-indicator" data-config={configJson} data-sections={sectionsJson} aria-label="Page navigation">
+  <!-- Navigation Dots -->
+  <div class="page-indicator__dots">
+    {
+      sections.map((section, index) => (
+        <button
+          class="page-indicator__dot-wrapper"
+          data-section-id={section.id}
+          data-index={index}
+          aria-label={`Go to ${section.id}`}
+        >
+          <Typography className="page-indicator__title" data-i18n={`page-indicator.${section.id}`} />
+          <span class="page-indicator__dot" />
+        </button>
+      ))
+    }
+  </div>
+
+  <!-- Separator -->
+  <div class="page-indicator__separator"></div>
+
+  <!-- Controls -->
+  <div class="page-indicator__controls">
+    <!-- Theme Toggle -->
+    <ThemeToggle />
+
+    <!-- Language Selector -->
+    <I18nToggle />
+
+    <!-- Position Swap -->
+    <button
+      class="page-indicator__control page-indicator__position-toggle"
+      aria-label="Move navigation to other side"
+      data-control="position"
+    >
+      <span class="page-indicator__icon--left">
+        <Fragment set:html={leftIcon} />
+      </span>
+      <span class="page-indicator__icon--right">
+        <Fragment set:html={rightIcon} />
+      </span>
+    </button>
+  </div>
+</nav>
+
+<style
+  define:vars={{
+    dotSize: `${mergedConfig.dotSize}px`,
+    activeDotHeight: `${mergedConfig.activeDotHeight}px`,
+    gap: `${mergedConfig.gap}px`,
+    rightOffset: `${mergedConfig.rightOffset}px`,
+    separatorThickness: `${mergedConfig.separatorThickness}px`,
+  }}
+>
+  .page-indicator {
+    position: fixed;
+    right: var(--rightOffset);
+    bottom: var(--rightOffset);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap);
+    z-index: 1000;
+    transition:
+      left 0.3s cubic-bezier(0, 0, 0.2, 1),
+      right 0.3s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .page-indicator[data-position='left'] {
+    right: auto;
+    left: var(--rightOffset);
+  }
+
+  /* Dots Container */
+  .page-indicator__dots {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap);
+  }
+
+  /* Dot Wrapper (clickable area) */
+  .page-indicator__dot-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+  }
+
+  /* Position-based flex direction */
+  .page-indicator:not([data-position='left']) .page-indicator__dot-wrapper {
+    flex-direction: row;
+  }
+
+  .page-indicator[data-position='left'] .page-indicator__dot-wrapper {
+    flex-direction: row-reverse;
+  }
+
+  /* Dot */
+  .page-indicator__dot {
+    width: var(--dotSize);
+    height: var(--dotSize);
+    border-radius: calc(var(--dotSize) / 2);
+    background-color: var(--background-light);
+    transition:
+      height 0.3s cubic-bezier(0, 0, 0.2, 1),
+      background-color 0.3s cubic-bezier(0, 0, 0.2, 1),
+      border-radius 0.3s cubic-bezier(0, 0, 0.2, 1);
+    flex-shrink: 0;
+  }
+
+  .page-indicator__dot-wrapper.active .page-indicator__dot {
+    height: var(--activeDotHeight);
+    background-color: var(--primary-main);
+  }
+
+  .page-indicator__dot-wrapper:hover .page-indicator__dot {
+    background-color: var(--primary-main);
+  }
+
+  /* Title */
+  .page-indicator__title {
+    position: absolute;
+    white-space: nowrap;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-main);
+    background-color: var(--background-dark);
+    padding: 4px 10px;
+    border-radius: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 0.3s cubic-bezier(0, 0, 0.2, 1),
+      transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  /* Title position - Right side (default) */
+  .page-indicator:not([data-position='left']) .page-indicator__title {
+    right: calc(var(--dotSize) + 12px);
+    transform: translateX(10px);
+  }
+
+  .page-indicator:not([data-position='left']) .page-indicator__dot-wrapper.active .page-indicator__title,
+  .page-indicator:not([data-position='left']) .page-indicator__dot-wrapper:hover .page-indicator__title {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Title position - Left side */
+  .page-indicator[data-position='left'] .page-indicator__title {
+    left: calc(var(--dotSize) + 12px);
+    transform: translateX(-10px);
+  }
+
+  .page-indicator[data-position='left'] .page-indicator__dot-wrapper.active .page-indicator__title,
+  .page-indicator[data-position='left'] .page-indicator__dot-wrapper:hover .page-indicator__title {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Separator */
+  .page-indicator__separator {
+    width: 24px;
+    height: var(--separatorThickness);
+    background-color: var(--primary-main);
+    border-radius: calc(var(--separatorThickness) / 2);
+  }
+
+  /* Controls Container */
+  .page-indicator__controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap);
+  }
+
+  /* Control Button */
+  .page-indicator__control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    color: var(--text-main);
+    transition:
+      color 0.3s cubic-bezier(0, 0, 0.2, 1),
+      transform 0.2s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .page-indicator__control:hover {
+    color: var(--primary-main);
+    transform: scale(1.1);
+  }
+
+  .page-indicator__control:active {
+    transform: scale(0.95);
+  }
+
+  /* Position toggle - show/hide icons based on position */
+  .page-indicator__icon--left {
+    display: block;
+  }
+
+  .page-indicator__icon--right {
+    display: none;
+  }
+
+  .page-indicator[data-position='left'] .page-indicator__icon--left {
+    display: none;
+  }
+
+  .page-indicator[data-position='left'] .page-indicator__icon--right {
+    display: block;
+  }
+
+  /* Focus styles for accessibility */
+  .page-indicator__dot-wrapper:focus-visible .page-indicator__dot,
+  .page-indicator__control:focus-visible {
+    outline: 2px solid var(--primary-main);
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  interface Section {
+    id: string;
+    title: string;
+  }
+
+  interface Config {
+    dotSize: number;
+    activeDotHeight: number;
+    gap: number;
+    rightOffset: number;
+    separatorThickness: number;
+  }
+
+  const STORAGE_KEY = 'pageIndicatorPosition';
+
+  function initPageIndicator(): void {
+    const nav = document.querySelector('.page-indicator') as HTMLElement | null;
+    if (!nav) return;
+
+    // Parse config and sections from data attributes
+    const config: Config = JSON.parse(nav.dataset['config'] || '{}');
+    const sections: Section[] = JSON.parse(nav.dataset['sections'] || '[]');
+
+    // Get DOM elements
+    const dotWrappers = nav.querySelectorAll('.page-indicator__dot-wrapper');
+    const positionToggle = nav.querySelector('[data-control="position"]');
+
+    // Initialize position from localStorage
+    const savedPosition = localStorage.getItem(STORAGE_KEY) || 'right';
+    if (savedPosition === 'left') {
+      nav.setAttribute('data-position', 'left');
+    }
+
+    /**
+     * Updates active dot based on scroll position
+     */
+    function updateActiveDot(): void {
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+      sections.forEach((section, index) => {
+        const element = document.getElementById(section.id);
+        if (!element) return;
+
+        const rect = element.getBoundingClientRect();
+        const sectionTop = window.scrollY + rect.top;
+        const sectionBottom = sectionTop + rect.height;
+
+        const wrapper = dotWrappers[index];
+        if (wrapper) {
+          const isActive = scrollPosition >= sectionTop && scrollPosition < sectionBottom;
+          wrapper.classList.toggle('active', isActive);
+        }
+      });
+    }
+
+    /**
+     * Scrolls to a specific section
+     */
+    function scrollToSection(sectionId: string): void {
+      const element = document.getElementById(sectionId);
+      if (!element) return;
+
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+
+    /**
+     * Toggles the position between left and right
+     */
+    function togglePosition(): void {
+      if (!nav) return;
+
+      const currentPosition = nav.getAttribute('data-position') || 'right';
+      const newPosition = currentPosition === 'right' ? 'left' : 'right';
+
+      if (newPosition === 'left') {
+        nav.setAttribute('data-position', 'left');
+      } else {
+        nav.removeAttribute('data-position');
+      }
+
+      localStorage.setItem(STORAGE_KEY, newPosition);
+    }
+
+    // Event Listeners
+
+    // Dot clicks
+    dotWrappers.forEach((wrapper) => {
+      wrapper.addEventListener('click', () => {
+        const sectionId = (wrapper as HTMLElement).dataset['sectionId'];
+        if (sectionId) {
+          scrollToSection(sectionId);
+        }
+      });
+    });
+
+    // Position toggle
+    positionToggle?.addEventListener('click', togglePosition);
+
+    // Scroll listener
+    let ticking = false;
+    function onScroll(): void {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateActiveDot();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', updateActiveDot, { passive: true });
+
+    // Initial update
+    updateActiveDot();
+
+    // Cleanup on Astro page navigation
+    document.addEventListener(
+      'astro:before-swap',
+      () => {
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', updateActiveDot);
+      },
+      { once: true }
+    );
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPageIndicator);
+  } else {
+    initPageIndicator();
+  }
+
+  // Re-initialize on Astro page navigation
+  document.addEventListener('astro:page-load', initPageIndicator);
+</script>

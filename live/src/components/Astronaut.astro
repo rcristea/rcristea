@@ -1,0 +1,358 @@
+---
+/**
+ * Astronaut Component
+ *
+ * A floating astronaut mascot with smooth, continuous animation.
+ * Designed to stay visible as a website mascot throughout scrolling.
+ * Reacts to scroll with a lazy follow effect.
+ *
+ * @props
+ * - imageAlt: string (default: 'Ruben the Astronaut') - Alt text for accessibility
+ * - floatSpeed: number (default: 10) - Animation duration in seconds (higher = slower)
+ * - floatRange: number (default: 15) - Vertical movement range in pixels
+ * - className: string (optional) - Additional CSS classes
+ *
+ * Usage:
+ * <Astronaut />
+ * <Astronaut floatSpeed={12} floatRange={20} />
+ */
+
+import rubenImage from '../assets/img/ruben.png';
+import Typography from './Typography.astro';
+
+interface Props {
+  imageAlt?: string;
+  floatSpeed?: number;
+  floatRange?: number;
+  className?: string;
+}
+
+const { imageAlt = 'Ruben the Astronaut', floatSpeed = 10, floatRange = 15, className = '' } = Astro.props;
+---
+
+<div class={`astronaut-wrapper ${className}`}>
+  <div class="speech-bubble" aria-hidden="true">
+    <Typography variant="body2" color="primary-contrast" data-i18n="astronaut.greeting">Hey!</Typography>
+  </div>
+  <div class="astronaut-container">
+    <img
+      src={rubenImage.src}
+      alt={imageAlt}
+      class="astronaut-image"
+      style={`--float-speed: ${floatSpeed}s; --float-range: ${floatRange}px;`}
+    />
+  </div>
+</div>
+
+<style>
+  .astronaut-wrapper {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    height: fit-content;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .astronaut-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  .astronaut-image {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    object-fit: contain;
+    /* GPU acceleration for smooth animation */
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    /* Smooth floating animation */
+    animation: float var(--float-speed, 6s) ease-in-out infinite;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  /* Speech Bubble */
+  .speech-bubble {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%) scale(0);
+    background: var(--primary-main);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 11;
+  }
+
+  .speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid var(--primary-main, #6366f1);
+  }
+
+  .speech-bubble.visible {
+    animation: bubblePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .speech-bubble.hiding {
+    animation: bubbleHide 0.25s ease-in forwards;
+  }
+
+  @keyframes bubblePop {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-80%) scale(0);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-100%) scale(1);
+    }
+  }
+
+  @keyframes bubbleHide {
+    0% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-100%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-80%) scale(0);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate3d(10px, calc(var(--float-range, 20px) * -0.5), 0) rotate(2deg);
+    }
+    50% {
+      transform: translate3d(0, calc(var(--float-range, 20px) * -1), 0) rotate(0deg);
+    }
+    75% {
+      transform: translate3d(-10px, calc(var(--float-range, 20px) * -0.5), 0) rotate(-2deg);
+    }
+  }
+
+  /* Responsive sizing */
+  @media (max-width: 768px) {
+    .astronaut-image {
+      max-width: 150px;
+    }
+
+    .astronaut-wrapper {
+      right: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .astronaut-image {
+      max-width: 100px;
+    }
+
+    .astronaut-wrapper {
+      right: 5px;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { isMobileDevice } from '../utils/device';
+
+  // Get the astronaut image element
+  const astronautImage = document.querySelector('.astronaut-image');
+  const astronautWrapper = document.querySelector('.astronaut-wrapper');
+
+  if (astronautImage && astronautWrapper) {
+    // Check if mobile (disable scroll effects on mobile)
+    const isMobile = isMobileDevice();
+    
+    let lastScrollY = window.scrollY;
+    let targetY = 0;
+    let currentY = 0;
+    let scrollVelocity = 0;
+    let ticking = false;
+
+    // Lazy follow parameters
+    const lagFactor = 0.04; // How quickly it catches up (lower = lazier)
+    const maxLag = 30; // Maximum vertical lag in pixels
+    const velocityMultiplier = 0.8; // How much scroll speed affects the lag
+
+    // Animation loop for smooth lazy follow (desktop only)
+    const animate = () => {
+      if (isMobile) return; // Skip on mobile
+      
+      // Smooth interpolation towards target
+      currentY += (targetY - currentY) * lagFactor;
+
+      // Apply the lazy follow offset
+      gsap.set(astronautWrapper, {
+        y: currentY,
+      });
+
+      requestAnimationFrame(animate);
+    };
+
+    // Start animation loop (desktop only)
+    if (!isMobile) {
+      animate();
+    }
+
+    // Smooth return animation for rotation
+    const returnToNeutral = () => {
+      gsap.to(astronautImage, {
+        rotation: 0,
+        x: 0,
+        duration: 1.2,
+        ease: 'power2.out',
+      });
+    };
+
+    // Handle scroll with velocity calculation (desktop only)
+    const handleScroll = () => {
+      if (isMobile) return; // Skip on mobile
+      
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const deltaY = currentScrollY - lastScrollY;
+
+          // Calculate velocity and update target for lazy follow
+          scrollVelocity = deltaY;
+
+          // The faster you scroll, the more it lags behind
+          const lagAmount = Math.max(-maxLag, Math.min(maxLag, scrollVelocity * velocityMultiplier));
+          targetY = lagAmount;
+
+          // Apply rotation and horizontal sway based on scroll velocity
+          const maxRotation = 6;
+          const maxOffsetX = 10;
+
+          const rotation = Math.max(-maxRotation, Math.min(maxRotation, scrollVelocity * 0.2));
+          const offsetX = Math.max(-maxOffsetX, Math.min(maxOffsetX, scrollVelocity * 0.3));
+
+          gsap.to(astronautImage, {
+            rotation: rotation,
+            x: offsetX,
+            duration: 0.4,
+            ease: 'power1.out',
+          });
+
+          lastScrollY = currentScrollY;
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    };
+
+    // Debounced scroll stop detection
+    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
+    const onScroll = () => {
+      if (isMobile) return; // Skip on mobile
+      
+      handleScroll();
+
+      // Clear existing timeout
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+
+      // Set new timeout to detect scroll stop
+      scrollTimeout = setTimeout(() => {
+        // Return to neutral position when scrolling stops
+        targetY = 0;
+        returnToNeutral();
+      }, 200);
+    };
+
+    // Attach scroll listener (desktop only)
+    if (!isMobile) {
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
+    // Speech bubble interaction
+    const speechBubble = document.querySelector('.speech-bubble');
+    const astronautContainer = document.querySelector('.astronaut-container');
+    let bubbleTimeout: ReturnType<typeof setTimeout> | null = null;
+    let isDragging = false;
+
+    const showBubble = () => {
+      if (!speechBubble) return;
+
+      // Clear any existing timeout
+      if (bubbleTimeout) {
+        clearTimeout(bubbleTimeout);
+      }
+
+      // Remove hiding class and add visible
+      speechBubble.classList.remove('hiding');
+      speechBubble.classList.add('visible');
+
+      // Hide after 1.5 seconds
+      bubbleTimeout = setTimeout(() => {
+        speechBubble.classList.remove('visible');
+        speechBubble.classList.add('hiding');
+
+        // Remove hiding class after animation
+        setTimeout(() => {
+          speechBubble.classList.remove('hiding');
+        }, 250);
+      }, 1500);
+    };
+
+    // Click handler
+    astronautContainer?.addEventListener('click', showBubble);
+
+    // Drag handlers (mousedown + mousemove)
+    astronautContainer?.addEventListener('mousedown', () => {
+      isDragging = true;
+    });
+
+    window.addEventListener('mousemove', () => {
+      if (isDragging) {
+        showBubble();
+        isDragging = false;
+      }
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    // Touch support
+    astronautContainer?.addEventListener('touchstart', showBubble, { passive: true });
+
+    // Cleanup on navigation
+    document.addEventListener('astro:before-swap', () => {
+      window.removeEventListener('scroll', onScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      if (bubbleTimeout) {
+        clearTimeout(bubbleTimeout);
+      }
+    });
+  }
+</script>

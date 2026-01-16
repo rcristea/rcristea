@@ -1,0 +1,210 @@
+---
+/**
+ * ExampleGap - Gap/Sabbatical Body Component
+ *
+ * Displays personal journey periods in the timeline modal.
+ * Used for travel, learning, career breaks, sabbaticals.
+ */
+
+export interface Props {
+  title?: string;
+  tagline?: string;
+  description?: string;
+  activities?: string[];
+  learnings?: string[];
+  locations?: string[];
+}
+
+const {
+  title = 'Personal Journey',
+  tagline = 'A time for growth, exploration, and renewal',
+  description = 'Taking time to step back, reflect, and invest in personal development often leads to the greatest professional breakthroughs.',
+  activities = [
+    'Traveled to Japan and explored Tokyo, Kyoto, and Osaka',
+    'Learned Rust programming language',
+    'Contributed to open source projects',
+    'Read 15 books on technology and leadership',
+  ],
+  learnings = [
+    'Importance of work-life balance',
+    'New perspectives from different cultures',
+    'Deeper understanding of system-level programming',
+  ],
+  locations = ['Japan', 'Remote'],
+} = Astro.props;
+---
+
+<div class="event-gap">
+  <div class="event-gap-header">
+    <h3 class="event-gap-title">{title}</h3>
+    {tagline && <p class="event-gap-tagline">{tagline}</p>}
+  </div>
+
+  {locations.length > 0 && (
+    <div class="event-gap-locations">
+      {locations.map((location) => (
+        <span class="event-gap-location">📍 {location}</span>
+      ))}
+    </div>
+  )}
+
+  <p class="event-gap-description">{description}</p>
+
+  {activities.length > 0 && (
+    <section class="event-gap-section">
+      <h4>Activities</h4>
+      <ul class="event-gap-list">
+        {activities.map((activity) => (
+          <li>{activity}</li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {learnings.length > 0 && (
+    <section class="event-gap-section">
+      <h4>Key Takeaways</h4>
+      <div class="event-gap-learnings">
+        {learnings.map((learning) => (
+          <div class="event-gap-learning">
+            <span class="event-gap-learning-icon">💡</span>
+            <span>{learning}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <div class="event-gap-quote">
+    <blockquote>
+      "The time you enjoy wasting is not wasted time."
+      <cite>— Bertrand Russell</cite>
+    </blockquote>
+  </div>
+</div>
+
+<style>
+  .event-gap {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .event-gap-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .event-gap-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary, #cd1c0b);
+    margin: 0;
+  }
+
+  .event-gap-tagline {
+    font-size: 0.875rem;
+    font-style: italic;
+    color: var(--color-text-light, #b9b9b9);
+    margin: 0;
+  }
+
+  .event-gap-locations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .event-gap-location {
+    font-size: 0.875rem;
+    color: var(--color-text-light, #b9b9b9);
+  }
+
+  .event-gap-description {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--color-text, #ffffff);
+  }
+
+  .event-gap-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .event-gap-section h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-light, #b9b9b9);
+    margin: 0;
+  }
+
+  .event-gap-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .event-gap-list li {
+    color: var(--color-text, #ffffff);
+    line-height: 1.5;
+  }
+
+  .event-gap-list li::marker {
+    content: '✈️ ';
+  }
+
+  .event-gap-learnings {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .event-gap-learning {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+  }
+
+  .event-gap-learning-icon {
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+  .event-gap-learning span:last-child {
+    color: var(--color-text, #ffffff);
+    line-height: 1.5;
+  }
+
+  .event-gap-quote {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(205, 28, 11, 0.1), rgba(205, 28, 11, 0.05));
+    border-radius: 8px;
+    border-left: 3px solid var(--color-primary, #cd1c0b);
+  }
+
+  .event-gap-quote blockquote {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-style: italic;
+    color: var(--color-text, #ffffff);
+    line-height: 1.6;
+  }
+
+  .event-gap-quote cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    font-style: normal;
+    color: var(--color-text-light, #b9b9b9);
+  }
+</style>

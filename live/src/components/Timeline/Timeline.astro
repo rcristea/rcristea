@@ -1,0 +1,148 @@
+---
+/**
+ * Timeline Component
+ *
+ * Main orchestrator for the life resume timeline feature.
+ * Renders a horizontal timeline on desktop, vertical on mobile.
+ * Uses React islands for interactivity (Canvas, Modal, Tooltip).
+ *
+ * Usage: <Timeline />
+ */
+
+import { timelineEvents, getChronologicalEvents } from '../../data/timeline';
+import { calculateTimelineLayout, DEFAULT_DIMENSIONS } from './utils';
+import type { TimelineDimensions, TimelineOrientation } from './types';
+import { dark, light } from '../../theme/constants';
+import TimelineCanvas from './TimelineCanvas';
+import TimelineModal from './TimelineModal';
+import TimelineEventBodies from './TimelineEventBodies.astro';
+import './timeline.css';
+
+/**
+ * Timeline configuration - adjust these to customize appearance
+ */
+const CONFIG = {
+  /** Breakpoint for horizontal/vertical switch */
+  mobileBreakpoint: 768,
+
+  /** Horizontal (desktop) dimensions */
+  horizontalDimensions: {
+    ...DEFAULT_DIMENSIONS,
+    width: 2400, // Wide for scrolling
+    height: 300,
+    padding: 80,
+    trackSpacing: 45,
+    nodeRadius: 8,
+    branchCurveRadius: 25,
+  } satisfies TimelineDimensions,
+
+  /** Vertical (mobile) dimensions */
+  verticalDimensions: {
+    ...DEFAULT_DIMENSIONS,
+    width: 300,
+    height: 2000, // Tall for scrolling
+    padding: 60,
+    trackSpacing: 40,
+    nodeRadius: 6,
+    branchCurveRadius: 20,
+    mainAxisOffset: 70, // Position timeline on the left (room for year labels)
+  } satisfies TimelineDimensions,
+
+  /** Line thickness */
+  lineWeight: 25,
+
+  /** Show year markers on timeline */
+  showYearMarkers: true,
+
+  /** Enable entrance animations */
+  animateOnScroll: true,
+
+  /** Animation duration in seconds */
+  animationDuration: 1.5,
+
+  /** Stagger delay between paths */
+  staggerDelay: 0.1,
+};
+
+const events = getChronologicalEvents();
+
+// Pre-calculate layouts for both orientations (SSR)
+const horizontalLayout = calculateTimelineLayout(
+  events,
+  'horizontal',
+  CONFIG.horizontalDimensions
+);
+
+const verticalLayout = calculateTimelineLayout(
+  events,
+  'vertical',
+  CONFIG.verticalDimensions
+);
+
+// Serialize data for client-side hydration
+const serializedData = {
+  events: timelineEvents,
+  horizontalLayout,
+  verticalLayout,
+  config: CONFIG,
+  darkColors: dark.palette.graph.colors,
+  lightColors: light.palette.graph.colors,
+};
+---
+
+<div class="timeline-section" id="timeline" aria-label="Career Timeline">
+  <div class="timeline-container">
+    <!-- React Island: TimelineCanvas handles all interactive rendering -->
+    <TimelineCanvas
+      client:load
+      data={serializedData}
+    />
+
+    <!-- React Island: Modal for event details -->
+    <TimelineModal
+      client:load
+      events={timelineEvents}
+    />
+
+    <!-- Pre-rendered event body content (hidden, injected into modal via JS) -->
+    <TimelineEventBodies />
+  </div>
+</div>
+
+<style>
+  .timeline-section {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    padding: 2rem 0;
+  }
+
+  .timeline-container {
+    position: relative;
+    width: 100%;
+  }
+
+  /* Desktop: horizontal scroll */
+  @media (min-width: 768px) {
+    .timeline-section {
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+
+    .timeline-container {
+      min-width: max-content;
+    }
+  }
+
+  /* Mobile: vertical scroll (natural) */
+  @media (max-width: 767px) {
+    .timeline-section {
+      overflow: visible;
+    }
+
+    .timeline-container {
+      width: 100%;
+      padding: 0 1rem;
+    }
+  }
+</style>

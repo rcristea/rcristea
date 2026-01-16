@@ -1,0 +1,107 @@
+---
+/**
+ * Projects Section
+ *
+ * Displays a grid of project cards showcasing portfolio projects.
+ */
+
+import Section from '../components/Section.astro';
+import Container from '../components/Container.astro';
+import Typography from '../components/Typography.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = [
+  {
+    id: 'excelsus-data',
+    badges: ['React', 'TypeScript', 'Go', 'PostgreSQL', 'GCP', 'Monorepo'],
+    liveUrl: 'https://www.excelsusdata.com',
+  },
+  {
+    id: 'carcareers',
+    badges: ['React', 'NestJS', 'TypeScript', 'PostgreSQL', 'GCP', 'Monorepo'],
+    liveUrl: 'https://carcareers.com',
+  },
+  {
+    id: 'portfolio',
+    badges: ['Astro', 'React', 'TypeScript', 'GSAP', 'CSS'],
+    githubUrl: 'https://github.com/rcristea/rcristea/tree/master/live',
+    liveUrl: 'https://rcristea.com',
+  },
+  {
+    id: 'adk',
+    badges: ['Go', 'Python', 'Redis', 'Docker', 'FastAPI'],
+    githubUrl: 'https://github.com/solasoft-labs',
+    wip: true,
+  },
+  {
+    id: 'oj-studios',
+    badges: ['Unity', 'Godot', 'XR', 'Multiplayer', 'Game Dev'],
+    githubUrl: 'https://github.com/ojstudios',
+    wip: true,
+  },
+  {
+    id: 'github-more',
+    badges: [],
+    githubUrl: 'https://github.com/rcristea',
+  },
+  // Add more projects here
+];
+---
+
+<Section id="projects" minHeight="full">
+  <Container maxWidth="md" padding="md">
+    <div class="projects-wrapper">
+      <header class="projects-header">
+        <Typography variant="h2" color="text-main" data-i18n="projects.title" />
+        <Typography variant="body1" color="text-light" data-i18n="projects.subtitle" />
+      </header>
+
+      <div class="projects-grid">
+        {
+          projects.map((project) => (
+            <ProjectCard
+              id={project.id}
+              badges={project.badges}
+              githubUrl={project.githubUrl}
+              liveUrl={project.liveUrl}
+              wip={project.wip}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .projects-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: 100%;
+  }
+
+  .projects-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .projects-wrapper {
+      gap: 2rem;
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

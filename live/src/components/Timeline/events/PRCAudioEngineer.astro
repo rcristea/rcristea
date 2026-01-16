@@ -1,0 +1,54 @@
+---
+/**
+ * PRCAudioEngineer - Audio Engineer at PRC
+ */
+
+export interface Props {
+  organization?: string;
+  location?: string;
+  responsibilities?: string[];
+  skills?: string[];
+}
+
+const {
+  organization = 'PRC',
+  location = 'Georgia',
+  responsibilities = [
+    'Audio engineer for live services with 300+ attendees per service',
+    'Managed live sound mixing and broadcast audio',
+    'Operated professional audio equipment for worship services',
+  ],
+  skills = ['Live Sound', 'Broadcast Audio', 'Mixing', 'Audio Engineering'],
+} = Astro.props;
+---
+
+<div class="event-personal">
+  <div class="event-personal-header">
+    <div class="event-personal-org">{organization}</div>
+    {location && <div class="event-personal-location">📍 {location}</div>}
+  </div>
+
+  <section class="event-personal-section">
+    <h4>Responsibilities</h4>
+    <ul class="event-personal-list">
+      {responsibilities.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  </section>
+
+  {skills.length > 0 && (
+    <section class="event-personal-section">
+      <h4>Skills</h4>
+      <div class="event-tags">
+        {skills.map((skill) => (
+          <span class="event-tag">{skill}</span>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <div class="event-media-slot" data-slot="media">
+    <slot name="media" />
+  </div>
+</div>

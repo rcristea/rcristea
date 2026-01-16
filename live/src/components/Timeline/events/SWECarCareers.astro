@@ -1,0 +1,55 @@
+---
+/**
+ * SWECarCareers - Full Stack Software Engineer at CARCAREERS.COM
+ */
+
+export interface Props {
+  company?: string;
+  location?: string;
+  responsibilities?: string[];
+  technologies?: string[];
+}
+
+const {
+  company = 'CARCAREERS.COM',
+  location = 'Remote, USA',
+  responsibilities = [
+    'Architected scalable solutions, including algorithms and system designs, within a monorepo structure to meet evolving business requirements',
+    'Engineered software solutions throughout the full development lifecycle, adhering to company standards and deploying to GKE',
+    'Led a team of engineers and designers in the development of a new phase of the platform, significantly enhancing scalability and user experience',
+    'Projected impact of nationwide and subsequent worldwide expansion',
+  ],
+  technologies = ['React', 'NestJS', 'TypeScript', 'GKE', 'Monorepo'],
+} = Astro.props;
+---
+
+<div class="event-work">
+  <div class="event-work-header">
+    <div class="event-work-company">{company}</div>
+    {location && <div class="event-work-location">📍 {location}</div>}
+  </div>
+
+  <section class="event-work-section">
+    <h4>Responsibilities</h4>
+    <ul class="event-work-list">
+      {responsibilities.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  </section>
+
+  {technologies.length > 0 && (
+    <section class="event-work-section">
+      <h4>Technologies</h4>
+      <div class="event-tags">
+        {technologies.map((tech) => (
+          <span class="event-tag">{tech}</span>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <div class="event-media-slot" data-slot="media">
+    <slot name="media" />
+  </div>
+</div>

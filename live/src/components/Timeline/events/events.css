@@ -1,0 +1,227 @@
+/**
+ * Timeline Event Component Styles
+ *
+ * Shared styles for all timeline event body components.
+ * Uses typography font families from Typography.astro:
+ * - Headings: 'Space Grotesk'
+ * - Body: 'Inter' (default system stack)
+ */
+
+/* ============================================================================
+   Font Family Definitions (matching Typography.astro)
+   ============================================================================ */
+
+:root {
+  --font-heading: 'Space Grotesk', 'Inter', 'Helvetica', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', 'Helvetica', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', monospace;
+}
+
+/* ============================================================================
+   Base Event Styles
+   ============================================================================ */
+
+.event-work,
+.event-education,
+.event-personal,
+.event-project {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  font-family: var(--font-body);
+}
+
+/* ============================================================================
+   Event Headers
+   ============================================================================ */
+
+.event-work-header,
+.event-education-header,
+.event-personal-header,
+.event-project-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.event-work-company,
+.event-education-school,
+.event-personal-org,
+.event-project-name {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary-main, #cd1c0b);
+}
+
+.event-work-location,
+.event-education-location,
+.event-personal-location,
+.event-project-location {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-light, #b9b9b9);
+}
+
+.event-education-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-light, #b9b9b9);
+  margin-top: -0.5rem;
+}
+
+/* ============================================================================
+   Event Sections
+   ============================================================================ */
+
+.event-work-section,
+.event-education-section,
+.event-personal-section,
+.event-project-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.event-work-section h4,
+.event-education-section h4,
+.event-personal-section h4,
+.event-project-section h4 {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-light, #b9b9b9);
+  margin: 0;
+}
+
+/* ============================================================================
+   Event Lists
+   ============================================================================ */
+
+.event-work-list,
+.event-education-list,
+.event-personal-list,
+.event-project-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.event-work-list li,
+.event-education-list li,
+.event-personal-list li,
+.event-project-list li {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-main, #ffffff);
+  line-height: 1.6;
+}
+
+.event-work-achievements li::marker {
+  content: '✓ ';
+  color: var(--primary-main, #cd1c0b);
+}
+
+/* ============================================================================
+   Event Degree/GPA (Education specific)
+   ============================================================================ */
+
+.event-education-degree {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.event-education-degree-name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-main, #ffffff);
+}
+
+.event-education-gpa {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-main, #cd1c0b);
+}
+
+/* ============================================================================
+   Event Tags
+   ============================================================================ */
+
+.event-tags,
+.event-work-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.event-tag,
+.event-work-tag {
+  padding: 0.25rem 0.625rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--text-main, #ffffff);
+  transition: background 0.15s ease;
+}
+
+.event-tag:hover,
+.event-work-tag:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.event-tag-highlight {
+  background: color-mix(in srgb, var(--primary-main, #cd1c0b) 20%, transparent);
+  color: var(--primary-main, #cd1c0b);
+  border: 1px solid color-mix(in srgb, var(--primary-main, #cd1c0b) 30%, transparent);
+}
+
+/* ============================================================================
+   Media Slot
+   ============================================================================ */
+
+.event-media-slot {
+  margin-top: 0.5rem;
+}
+
+.event-media-slot:empty {
+  display: none;
+}
+
+/* ============================================================================
+   Responsive Styles
+   ============================================================================ */
+
+@media (max-width: 767px) {
+  .event-work-company,
+  .event-education-school,
+  .event-personal-org,
+  .event-project-name {
+    font-size: 1rem;
+  }
+
+  .event-work-list li,
+  .event-education-list li,
+  .event-personal-list li,
+  .event-project-list li {
+    font-size: 0.9rem;
+  }
+
+  .event-tag,
+  .event-work-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+  }
+}

@@ -1,0 +1,58 @@
+---
+/**
+ * GAVELLabUGA - GAVEL Lab Assistant at University of Georgia
+ */
+
+export interface Props {
+  lab?: string;
+  school?: string;
+  location?: string;
+  responsibilities?: string[];
+  technologies?: string[];
+}
+
+const {
+  lab = "UGA's Games and Virtual Environments Lab",
+  school = 'University of Georgia',
+  location = 'Athens, GA',
+  responsibilities = [
+    'Designed and created virtual environments using Unity and C# outlined by researchers to better understand how virtual environments influence people',
+    'Created environments to test HP Reverb G2 Omnicept Edition face and eye tracking technology',
+    'Explored new possibilities for future research projects',
+  ],
+  technologies = ['Unity', 'C#', 'HP Reverb G2 Omnicept', 'VR Development'],
+} = Astro.props;
+---
+
+<div class="event-education">
+  <div class="event-education-header">
+    <div class="event-education-school">{lab}</div>
+    {location && <div class="event-education-location">📍 {location}</div>}
+  </div>
+
+  <div class="event-education-subtitle">{school}</div>
+
+  <section class="event-education-section">
+    <h4>Research & Development</h4>
+    <ul class="event-education-list">
+      {responsibilities.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  </section>
+
+  {technologies.length > 0 && (
+    <section class="event-education-section">
+      <h4>Technologies</h4>
+      <div class="event-tags">
+        {technologies.map((tech) => (
+          <span class="event-tag">{tech}</span>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <div class="event-media-slot" data-slot="media">
+    <slot name="media" />
+  </div>
+</div>
