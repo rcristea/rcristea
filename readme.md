@@ -100,7 +100,7 @@
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <strong>Unity</strong>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <strong>Unreal Engine</strong>
+  <strong>Unreal</strong>
 </p>
 
 <br>
