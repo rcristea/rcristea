@@ -24,17 +24,17 @@
 
 ### Favorite Languages
 
+![Rust](./assets/icon/rust.svg)
 ![Typescript](./assets/icon/typescript.svg)
-![Go](./assets/icon/go.svg)
 ![C++](./assets/icon/cpp.svg)
 ![Python](./assets/icon/python.svg)
 
 ### Others I Like
-![JavaScript](./assets/icon/javascript.svg)
-![C#](./assets/icon/csharp.svg)
-![Rust](./assets/icon/rust.svg)
+![Go](./assets/icon/go.svg)
 ![Kotlin](./assets/icon/kotlin.svg)
 ![Swift](./assets/icon/swift.svg)
+![JavaScript](./assets/icon/javascript.svg)
+![C#](./assets/icon/csharp.svg)
 ![php](./assets/icon/php.svg)
 ![Java](./assets/icon/java.svg)
 
